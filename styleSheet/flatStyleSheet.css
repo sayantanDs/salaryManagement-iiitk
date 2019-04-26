@@ -1,0 +1,382 @@
+QWidget
+{
+    font-family: sans serif;
+    font-size: 14px;
+    color: rgb(44, 45, 46);
+    background-color: rgb(232, 232, 232);
+}
+CardButton
+{
+    min-width: 140px;
+    min-height: 140px;
+    max-width: 140px;
+    max-height: 140px;
+    background-color: rgb(250, 250, 250);
+}
+CardButton:hover
+{
+    background-color: rgb(255, 255, 255);
+}
+QFrame#leftPane
+{
+    min-width: 200px;
+    max-width: 320px;
+    /*background-color: rgb(225, 225, 225);*/
+    background-color: rgb(50, 50, 50);
+    /*border-right: 10px solid qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 rgb(200,200,200), stop: 0.6 rgb(228, 228, 228), stop:1 rgb(232, 232, 232));
+    */
+    border-right: 10px solid qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0
+        rgb(150,150,150), stop: 0.6 rgb(228, 228, 228), stop:1 rgb(232, 232, 232));
+
+}
+QFrame#leftPane QLabel
+{
+    color: rgb(220, 220, 220);
+}
+QFrame#header
+{
+    max-height: 100px;
+    /*background-color: rgb(92, 157, 219);*/
+    background-color: rgb(72, 148, 219);
+    padding-bottom: 20px;
+
+}
+QLabel#headerText
+{
+    font-size: 25px;
+    font-weight: bold;
+    padding-top: 10px;
+    color: rgb(250,250,250);
+}
+QLabel#headerText2
+{
+    font-size: 15px;
+    font-weight: bold;
+    color: rgb(250,250,250);
+}
+QLabel#title
+{
+    font-size: 26px;
+    font-weight: bold;
+    padding-right: 20px;
+    color: rgb(255, 255, 255);
+}
+
+
+HomeWidget QGroupBox
+{
+    background-color: rgb(220,220,220);
+}
+QGroupBox {
+    font-weight: bold;
+    background-color: rgb(253,253,253);
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 30px;
+}
+QGroupBox#Login QCheckBox
+{
+    background: transparent;
+}
+
+QGroupBox#Login
+{
+    min-width: 300px;
+    max-width: 400px;
+    border-radius: 0px;
+    border-left: 10px solid qlineargradient(x1:1, y1:0, x2:0, y2:0, stop:0 rgb(200,200,200), stop: 0.6 rgb(228, 228, 228), stop:1 rgb(232, 232, 232));
+    border-right: 10px solid qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 rgb(200,200,200), stop: 0.6 rgb(228, 228, 228), stop:1 rgb(232, 232, 232));
+    border-top: 10px solid qlineargradient(x1:0, y1:1, x2:0, y2:0, stop:0 rgb(200,200,200), stop: 0.6 rgb(228, 228, 228), stop:1 rgb(232, 232, 232));
+    border-bottom: 10px solid qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 rgb(200,200,200), stop: 0.6 rgb(228, 228, 228), stop:1 rgb(232, 232, 232));
+}
+
+QGroupBox::title {
+
+    subcontrol-origin: margin;
+    left: 20px;
+    top: 18px;
+    subcontrol-position: top left; /* position at the top center */
+
+}
+
+QLabel
+{
+    background:transparent;
+}
+QLabel#heading
+{
+    font-weight: bold;
+}
+
+QPushButton#HomeBttn
+{
+    padding: 10px;
+    height: 50px;
+    max-width: 250px;
+    min-width: 160px;
+    border-radius: 16px;
+}
+
+
+QMessageBox QPushButton
+{
+    min-width: 60px;
+}
+QPushButton#LoginButton,
+QPushButton#OkButton
+{
+    background-color: rgb(111, 172, 252);
+    padding: 8px;
+    color: rgb(255, 255, 255);
+    min-width: 120px;
+    border: 1px solid rgb(131, 179, 241);
+}
+
+QPushButton#LoginButton:hover,
+QPushButton#OkButton:hover
+{
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                stop:0 rgb(143, 191, 253), stop: 0.3 rgb(139, 187, 249), stop:1 rgb(128, 176, 238));
+    border: 1px solid rgb(131, 179, 241);
+    border-bottom: 2px solid rgb(131, 179, 241);
+
+}
+QPushButton#LoginButton:pressed,
+QPushButton#LoginButton:pressed:hover,
+QPushButton#OkButton:pressed,
+QPushButton#OkButton:pressed:hover
+{
+    background-color: rgb(102, 154, 221);
+    border-bottom: 1px;
+}
+
+QPushButton#CancelButton
+{
+    min-width: 120px;
+    padding: 8px;
+    border: 1px solid rgb(26, 26, 26);
+    background: rgb(245, 245, 245);
+}
+QPushButton#CancelButton:hover
+{
+    color: rgb(255, 86, 101);
+    background: rgb(250, 250, 250);
+    border: 1px solid rgb(255, 86, 101);
+    border-bottom: 2px solid rgb(255, 86, 101);
+
+}
+QPushButton#CancelButton:pressed,
+QPushButton#CancelButton:pressed:hover
+{
+    border: 1px solid rgb(237, 75, 89);
+    background: rgb(243, 243, 243);
+    border-bottom: 1px;
+}
+
+QPushButton#MenuBttn
+{
+    min-width: 16px;
+    border-radius: 12px;
+    border: 1px solid rgb(200, 200, 200);
+}
+QPushButton#LoginButton
+{
+    min-width: 100px;
+    padding: 5px;
+}
+
+QCalendarWidget QToolButton,
+QComboBox,
+QPushButton
+{
+    color: rgb(50, 50, 50);
+    background-color: rgb(238, 238, 238);
+    border-radius: 12px;
+    border: 1px solid rgb(200, 200, 200);
+    padding: 5px;
+    min-height: 14px;
+}
+QComboBox
+{
+    border-radius: 12px;
+    border: 1px solid rgb(200, 200, 200);
+}
+QCalendarWidget QToolButton:hover,
+QComboBox:hover,
+QPushButton:hover
+{
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                stop:0 rgb(255, 255, 255), stop: 0.3 rgb(251, 251, 251), stop:1 rgb(240, 240, 240));
+    border: 1px solid rgb(200, 200, 200);
+    border-bottom: 2px solid rgb(220, 220, 220);
+}
+QCalendarWidget QToolButton:pressed,
+QCalendarWidget QToolButton:pressed:hover,
+QComboBox:pressed,
+QComboBox:pressed:hover,
+QPushButton:pressed,
+QPushButton:pressed:hover
+{
+    background-color: rgb(228,228,228);
+    border-bottom: 1px;
+}
+
+QPushButton::menu-indicator {
+    image: url(Resources/icons8-sort-down-24.png);
+    width:18px;
+    subcontrol-position: right center;
+    subcontrol-origin: padding;
+    left: -4px;
+}
+
+QCalendarWidget QSpinBox,
+QAbstractSpinBox,
+QComboBox:editable,
+QLineEdit
+{
+    color: rgb(50,50,50);
+    background-color: rgb(245, 245, 245);
+    border-radius: 12;
+    border: 1px solid rgb(200, 200, 200);
+    padding: 3px;
+    font-size: 14px;
+    min-height: 16px;
+}
+QLineEdit[readOnly="true"]
+{
+    background-color: rgb(248, 248, 248);
+    border : 1px solid rgb(240, 240, 240);
+}
+
+QAbstractSpinBox:hover,
+QComboBox:editable:hover,
+QLineEdit[readOnly="false"]:hover
+{
+    border: 1px solid rgb(26, 140, 255);
+}
+
+QCalendarWidget QMenu,
+QComboBox QAbstractItemView
+{
+    background-color: rgb(252,252,252);
+    border-radius: 2px;
+    border: 1px solid #BAB9B8;
+    selection-background-color: rgb(51, 164, 223);
+}
+
+QComboBox::drop-down
+{
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-left-width: 1px;
+    border-left-color: rgb(180, 180, 180);
+    border-left-style: solid;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+QComboBox::down-arrow
+{
+    border-image: url(Resources/icons8-sort-down-24.png);
+}
+
+QScrollBar:vertical
+{
+    background-color: rgb(230,230,230);
+    width: 10px;
+}
+
+QScrollBar::handle:vertical
+{
+    border: 1px solid rgb(100, 100, 100);
+    background-color: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                stop:0 rgb(155, 155, 155), stop: 0.6 rgb(150, 150, 150), stop:1 rgb(100, 100, 100));
+    border-radius: 3px;
+}
+
+QScrollBar:horizontal
+{
+    background-color: rgb(230,230,230);
+    height: 10px;
+}
+
+QScrollBar::handle:horizontal
+{
+    border: 1px solid rgb(100, 100, 100);
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                stop:0 rgb(155, 155, 155), stop: 0.6 rgb(150, 150, 150), stop:1 rgb(100, 100, 100));
+    border-radius: 3px;
+}
+
+QCalendarWidget QSpinBox::up-button,
+QAbstractSpinBox:up-button
+{
+    width: 25px;
+    background-color: transparent;
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+
+}
+
+QCalendarWidget QSpinBox::down-button,
+QAbstractSpinBox:down-button
+{
+    width: 25px;
+    background-color: transparent;
+    subcontrol-origin: padding;
+    subcontrol-position: bottom right;
+}
+
+
+QCalendarWidget QSpinBox::up-arrow,
+QAbstractSpinBox::up-arrow
+{
+    border-image: url(Resources/icons8-sort-up-24.png);
+    width: 15px;
+}
+QCalendarWidget QSpinBox::down-arrow,
+QAbstractSpinBox::down-arrow
+{
+    border-image: url(Resources/icons8-sort-down-24.png);
+    width: 15px;
+}
+
+/* header row */
+QCalendarWidget QWidget
+{
+  alternate-background-color: rgb(210, 220, 255);
+}
+
+/* normal days */
+QCalendarWidget QAbstractItemView:enabled
+{
+	color: rgb(80, 80, 80);
+	background-color: rgb(250, 251, 252);
+	selection-background-color: rgb(51, 164, 223);
+	selection-color: rgb(250, 250, 250);
+}
+
+  /* days in other months */
+  /* navigation bar */
+QCalendarWidget QWidget#qt_calendar_navigationbar
+{
+    background-color: rgb(200, 200, 200);
+}
+
+QCalendarWidget QAbstractItemView:disabled
+{
+color: rgb(64, 64, 64);
+}
+QTableWidget {
+    gridline-color: rgb(200, 200, 200);
+    background-color: rgb(255, 255, 255);
+}
+QHeaderView::section {
+    background-color: rgb(220, 220, 220);
+    padding: 4px;
+    border-style: none;
+    border-bottom: 1px solid rgb(180, 180, 180);
+    border-right: 1px solid rgb(180, 180, 180);
+}
