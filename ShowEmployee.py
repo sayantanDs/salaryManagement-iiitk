@@ -11,14 +11,13 @@ class ShowEmployeeWidget(QtGui.QWidget):
         self.title = "Show Employee"
 
         self.table = QtGui.QTableWidget(self)
-
         self.table.setEditTriggers(QtGui.QAbstractItemView.NoEditTriggers)
 
         self.loadTable()
 
         self.bttnBack = QtGui.QPushButton("Back")
         self.bttnBack.clicked.connect(self.goBack)
-        self.bttnBack.setObjectName("BigButton")
+        self.bttnBack.setObjectName("CancelButton")
 
         self.setupUI()
 
