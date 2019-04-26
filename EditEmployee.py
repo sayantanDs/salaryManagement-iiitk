@@ -17,7 +17,7 @@ class EditEmployeeWidget(QWidget):
         # ------elements for selecting employee-----------
         self.nameSearch = SearchBox(self)
         self.nameSearch.setPlaceholderText("Enter Name")
-        self.nameSearch.returnPressed.connect(self.setIDList)
+
         # self.name.currentIndexChanged.connect(self.setIDList)
         self.nameList = []
         self.nameList = DatabaseManager.db.getEmployeeNameList()
@@ -26,6 +26,7 @@ class EditEmployeeWidget(QWidget):
 
         self.id = QComboBox()
         self.id.currentIndexChanged.connect(lambda: self.loadInfo(self.id.currentText()))
+        self.nameSearch.returnPressed.connect(self.setIDList)
 
         # ------elements for ediiting employee-----------
         self.nameEdit = QLineEdit(self)

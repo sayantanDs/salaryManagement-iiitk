@@ -118,3 +118,20 @@ class DatabaseManager:
         command = "SELECT * FROM " + self.designationTableName + " WHERE designation = %s"
         self.mycursor.execute(command,(designation,))
         return self.mycursor.fetchone()
+
+    def editDesignationInfo(self,designation,da,ha,ta,it,pt,origDesignation):
+        command="update " + self.designationTableName+" " +\
+                "set designation = %s ,"+\
+                "DA = %s, "+\
+                "HA = %s, "+\
+                "TA = %s, "+\
+                "IT = %s, "+\
+                "PT = %s "+\
+                "where designation = %s"
+        print command
+        self.mycursor.execute(command,(designation,da,ha,ta,it,pt,origDesignation))
+        if designation != origDesignation:
+            command = "update " + self.employeeTableName + " set designation=%s where designation=%s"
+            print command
+            self.mycursor.execute(command, (designation, origDesignation))
+        self.mydb.commit()

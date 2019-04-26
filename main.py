@@ -12,6 +12,7 @@ from EditEmployee import EditEmployeeWidget
 from ShowEmployee import ShowEmployeeWidget
 from AddDesignation import AddDesignationWidget
 from ShowDesignation import ShowDesigationWidget
+from EditDesignation import EditDesignationWidget
 from CalculateSalary import CalculateSalaryWidget
 from ShowPaySlip import ShowPaySlipWidget
 from Login import LoginWidget
@@ -47,6 +48,7 @@ class MainWindow(QtGui.QMainWindow):
             "Edit Employee": EditEmployeeWidget,
             "Show Employee": ShowEmployeeWidget,
             "Add Designation": AddDesignationWidget,
+            "Edit Designation": EditDesignationWidget,
             "Show Designation": ShowDesigationWidget,
             "Calc Salary": CalculateSalaryWidget,
             "Result": ShowPaySlipWidget

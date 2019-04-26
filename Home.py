@@ -6,7 +6,6 @@ from PySide.QtCore import Qt, QSize
 from PySide.QtGui import QApplication
 import sys
 
-
 '''
 Home Page
 ----------
@@ -51,6 +50,7 @@ class HomeWidget(QWidget):
         self.bttnEditDesg = QPushButton("Edit Designation")
         self.bttnEditDesg.setIcon(QIcon(QPixmap("Resources/edit_designation.png")))
         self.bttnEditDesg.setIconSize(QSize(64, 64))
+        self.bttnEditDesg.clicked.connect(lambda: self.gotoPage("Edit Designation"))
 
         self.bttnDelDesg = QPushButton("Delete Designation")
         self.bttnDelDesg.setIcon(QIcon(QPixmap("Resources/delete_designation.png")))
@@ -81,7 +81,6 @@ class HomeWidget(QWidget):
     def setupUI(self):
         layout = QVBoxLayout()
         layout.setAlignment(Qt.AlignHCenter)
-
 
         self.setContentsMargins(20, 10, 20, 5)
 
