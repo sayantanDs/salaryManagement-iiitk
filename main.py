@@ -122,10 +122,10 @@ if __name__ == "__main__":
         #                                                      username="root",
         #                                                      password="root")
 
-        DatabaseManager.db = DatabaseManager.DatabaseManager(host="sql12.freemysqlhosting.net",
-                                                             username="sql12287494",
-                                                             password="ctR2K5xhG2",
-                                                             databaseName="sql12287494")
+        DatabaseManager.db = DatabaseManager.DatabaseManager(host="remotemysql.com",
+                                                            username="41Ng5H2E1B",
+                                                            password="nGQNpBrowE",
+                                                            databaseName="41Ng5H2E1B")
 
         w = MainWindow()
 
