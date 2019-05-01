@@ -2,7 +2,6 @@ import DatabaseManager
 from PySide import QtGui
 from PySide.QtCore import Qt
 
-import sys
 
 class ShowEmployeeWidget(QtGui.QWidget):
     def __init__(self, parent=None):
@@ -56,16 +55,3 @@ class ShowEmployeeWidget(QtGui.QWidget):
     def goBack(self):
         if self.__parent is not None:
             self.__parent.goBack()
-
-
-if __name__ == "__main__":
-    DatabaseManager.db = DatabaseManager.DatabaseManager(host="sql12.freemysqlhosting.net",
-                                                         username="sql12269310",
-                                                         password="sc4Jm8WSRj",
-                                                         databaseName="sql12269310")
-    app = QtGui.QApplication(sys.argv)
-
-    w = ShowEmployeeWidget()
-    w.show()
-
-    sys.exit(app.exec_())

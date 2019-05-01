@@ -12,9 +12,6 @@ class LoginWidget(QtGui.QDialog):
         self._parent = parent
         self.title = "Log in"
 
-        # self.logo = QtGui.QLabel()
-        # self.logo.setPixmap("Resources/iiitk.png")
-
         self.username = QtGui.QLineEdit(self)
         self.username.setPlaceholderText("Enter username")
 
@@ -58,22 +55,6 @@ class LoginWidget(QtGui.QDialog):
         layout.addStretch(1)
 
         self.setContentsMargins(20, 10, 20, 5)
-        # banner = QtGui.QHBoxLayout()
-        # banner.addStretch()
-        # banner.addWidget(self.logo)
-        # bannerText = QtGui.QVBoxLayout()
-        # text = QtGui.QLabel("Salary Management System")
-        # text.setStyleSheet("font-size: 30px;")
-        # bannerText.addWidget(text)
-        # bannerText.setAlignment(text, Qt.AlignBottom)
-        # text2 = QtGui.QLabel("Indian Institute of Information Technology Kalyani")
-        # text2.setStyleSheet("font-size: 20px;")
-        # bannerText.addWidget(text2)
-        # bannerText.setAlignment(text2, Qt.AlignTop)
-        # banner.addLayout(bannerText)
-        # banner.addStretch()
-        # layout.addLayout(banner)
-        # layout.addSpacing(30)
 
         loginGroup = QtGui.QGroupBox("Login")
         loginGroup.setObjectName("Login")
