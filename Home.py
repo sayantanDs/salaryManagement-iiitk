@@ -1,5 +1,3 @@
-version_text = "v1_7_1 (online server) at freemysqlhosting.net"
-
 from PySide.QtGui import QWidget, QPushButton, QGridLayout, QLabel, QVBoxLayout, QHBoxLayout, QPixmap, QIcon, QGroupBox, QFont
 from PySide.QtCore import Qt, QSize
 
@@ -124,9 +122,6 @@ class HomeWidget(QWidget):
         layout.addLayout(groups)
 
         layout.addStretch()
-
-        version = QLabel(version_text)
-        layout.addWidget(version)
 
         centerLayout = QHBoxLayout()
         centerLayout.addStretch()
