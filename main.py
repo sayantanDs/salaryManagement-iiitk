@@ -3,7 +3,7 @@ import sys
 
 import mysql.connector
 
-import DatabaseManager
+from DatabaseManager import Database
 
 from Home import HomeWidget
 from AddEmployee import AddEmployeeWidget
@@ -117,15 +117,15 @@ if __name__ == "__main__":
         splash.show()
         app.processEvents()
 
-        # DatabaseManager.db = DatabaseManager.DatabaseManager(host="localhost",
-        #                                                      databaseName="salaryManagement_test_1",
-        #                                                      username="root",
-        #                                                      password="root")
+        # Database.connect(host="localhost",
+        #                  databaseName="salaryManagement_test_1",
+        #                  username="root",
+        #                  password="root")
 
-        DatabaseManager.db = DatabaseManager.DatabaseManager(host="remotemysql.com",
-                                                            username="41Ng5H2E1B",
-                                                            password="nGQNpBrowE",
-                                                            databaseName="41Ng5H2E1B")
+        Database.connect(host="remotemysql.com",
+                         username="41Ng5H2E1B",
+                         password="nGQNpBrowE",
+                         databaseName="41Ng5H2E1B")
 
         w = MainWindow()
 

@@ -1,7 +1,7 @@
 from PySide.QtGui import QWidget, QPushButton, QLabel,\
         QLineEdit, QHBoxLayout, QFormLayout, QVBoxLayout, QMessageBox, QDoubleValidator
 
-import DatabaseManager
+from DatabaseManager import Database
 
 '''
 Add Designation Page
@@ -50,7 +50,7 @@ class AddDesignationWidget(QWidget):
         else:
             print designation, float(da), float(hra), float(ta), float(it), float(pt)
             try:
-                DatabaseManager.db.addDesignation(designation, float(da), float(hra), float(ta), float(it), float(pt))
+                Database.getdb().addDesignation(designation, float(da), float(hra), float(ta), float(it), float(pt))
                 msg = QMessageBox(QMessageBox.NoIcon, "Success", "Designation added successfully", parent=self)
                 msg.exec_()
                 self.goBack()

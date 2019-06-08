@@ -1,4 +1,4 @@
-import DatabaseManager
+from DatabaseManager import Database
 from PySide import QtGui
 from PySide.QtCore import Qt
 
@@ -22,7 +22,7 @@ class ShowEmployeeWidget(QtGui.QWidget):
 
     def loadTable(self):
 
-        info = DatabaseManager.db.getAllEmployeeInfo()
+        info = Database.getdb().getAllEmployeeInfo()
         self.table.setRowCount(len(info))
         self.table.setColumnCount(len(info[0]))
 

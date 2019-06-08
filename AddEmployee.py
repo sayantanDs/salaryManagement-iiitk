@@ -4,7 +4,7 @@ from PySide.QtGui import QWidget, QPushButton, QLabel,\
 from PySide.QtCore import QRegExp
 
 from CustomWidgets import DatePicker
-import DatabaseManager
+from DatabaseManager import Database
 
 import mysql.connector
 from ShowMySqlError import ShowMysqlError
@@ -26,7 +26,7 @@ class AddEmployeeWidget(QWidget):
         self.name.setValidator(QRegExpValidator(QRegExp("[a-zA-Z\s]+")))
         self.designation = QComboBox(self)
 
-        # self.designation.addItems(DatabaseManager.db.getDesignations())
+        # self.designation.addItems(Database.getdb().getDesignations())
 
         self.originalPay = QLineEdit(self)
         self.originalPay.setValidator(QDoubleValidator())
@@ -43,7 +43,7 @@ class AddEmployeeWidget(QWidget):
         self.bttnCancel.clicked.connect(self.goBack)
         self.bttnAddEmployee.clicked.connect(self.add)
 
-        self.designation.addItems(DatabaseManager.db.getDesignations())
+        self.designation.addItems(Database.getdb().getDesignations())
 
         self.setupUI()
 
@@ -64,7 +64,7 @@ class AddEmployeeWidget(QWidget):
             print id, name, designation, originalPay, originalPayGrade, doj, pan
 
             try:
-                DatabaseManager.db.addEmployee(id, name, designation, float(originalPay), float(originalPayGrade), doj, pan)
+                Database.getdb().addEmployee(id, name, designation, float(originalPay), float(originalPayGrade), doj, pan)
             except mysql.connector.Error as e:
                 ShowMysqlError(e, self)
                 return

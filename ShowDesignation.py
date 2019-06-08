@@ -1,4 +1,4 @@
-import DatabaseManager
+from DatabaseManager import Database
 from PySide import QtGui
 from PySide.QtCore import Qt
 
@@ -24,7 +24,7 @@ class ShowDesigationWidget(QtGui.QWidget):
 
     def loadTable(self):
 
-        info = DatabaseManager.db.getAllDesignationInfo()
+        info = Database.getdb().getAllDesignationInfo()
         self.table.setRowCount(len(info))
         self.table.setColumnCount(len(info[0]))
 

@@ -1,7 +1,7 @@
 from PySide.QtGui import QWidget, QApplication, QPushButton, QLabel,\
         QLineEdit, QComboBox, QHBoxLayout, QFormLayout, QVBoxLayout, QMessageBox, QFrame, QFileDialog, QSpinBox, QGroupBox
 from datetime import datetime
-import DatabaseManager
+from DatabaseManager import Database
 from CustomWidgets import SearchBox, ValueBox
 from ShowMySqlError import ShowMysqlError
 
@@ -24,7 +24,8 @@ class CalculateSalaryWidget(QWidget):
         self.name.setPlaceholderText("Enter Name")
 
         self.nameList = []
-        self.nameList = DatabaseManager.db.getEmployeeNameList()
+        # self.nameList = DatabaseManager.db.getEmployeeNameList()
+        self.nameList = Database.getdb().getEmployeeNameList()
         self.name.setList(self.nameList)
 
         self.id = QComboBox()
@@ -111,7 +112,8 @@ class CalculateSalaryWidget(QWidget):
     def loadInfo(self, id):
         print "id =", id, "...", len(id)
         if id != '':
-            info = DatabaseManager.db.getEmployeeInfo(id)
+            # info = DatabaseManager.db.getEmployeeInfo(id)
+            info = Database.getdb().getEmployeeInfo(id)
             _, _, designation, originalPay, originalPayGrade, doj, pan = info
             self.designation.setText(str(designation))
             self.originalPay.setText(str(originalPay))
@@ -119,7 +121,8 @@ class CalculateSalaryWidget(QWidget):
             self.DOJ.setText("%02d/%02d/%4d" % (doj.day, doj.month, doj.year))
             self.pan.setText(str(pan))
 
-            _, da, hra, ta, it, pt = DatabaseManager.db.getDesignationInfo(designation)
+            # _, da, hra, ta, it, pt = DatabaseManager.db.getDesignationInfo(designation)
+            _, da, hra, ta, it, pt = Database.getdb().getDesignationInfo(designation)
 
             self.da_percent.setText(str(da))
             self.hra_percent.setText(str(hra))
@@ -129,7 +132,8 @@ class CalculateSalaryWidget(QWidget):
 
     def setIDList(self, name):
         self.id.clear()
-        self.id.addItems(DatabaseManager.db.getIdListForName(name))
+        # self.id.addItems(DatabaseManager.db.getIdListForName(name))
+        self.id.addItems(Database.getdb().getIdListForName(name))
 
     def goBack(self):
         if self.__parent is not None:

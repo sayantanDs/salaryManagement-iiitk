@@ -3,7 +3,7 @@ from PySide.QtGui import QWidget, QLineEdit, QRegExpValidator, QComboBox, QPushB
 from PySide.QtCore import QRegExp, QDate
 
 from CustomWidgets import DatePicker, SearchBox
-import DatabaseManager
+from DatabaseManager import  Database
 
 import mysql.connector
 from ShowMySqlError import ShowMysqlError
@@ -20,7 +20,7 @@ class EditEmployeeWidget(QWidget):
 
         # self.name.currentIndexChanged.connect(self.setIDList)
         self.nameList = []
-        self.nameList = DatabaseManager.db.getEmployeeNameList()
+        self.nameList = Database.getdb().getEmployeeNameList()
         self.nameSearch.setList(self.nameList)
         self.nameSearch.setCurrentIndex(-1)
 
@@ -48,7 +48,7 @@ class EditEmployeeWidget(QWidget):
         self.bttnCancel.clicked.connect(self.goBack)
         self.bttnSave.clicked.connect(self.save)
 
-        self.designation.addItems(DatabaseManager.db.getDesignations())
+        self.designation.addItems(Database.getdb().getDesignations())
         self.nameSearch.editTextChanged.connect(self.clearInfo)
         self.clearInfo()
 
@@ -72,7 +72,7 @@ class EditEmployeeWidget(QWidget):
         else:
 
             try:
-                DatabaseManager.db.editEmployee(id, name, designation, float(originalPay), float(originalPayGrade), doj, pan)
+                Database.getdb().editEmployee(id, name, designation, float(originalPay), float(originalPayGrade), doj, pan)
             except mysql.connector.Error as e:
                 ShowMysqlError(e, self)
                 return
@@ -102,12 +102,12 @@ class EditEmployeeWidget(QWidget):
 
     def setIDList(self, name):
         self.id.clear()
-        self.id.addItems(DatabaseManager.db.getIdListForName(name))
+        self.id.addItems(Database.getdb().getIdListForName(name))
 
     def loadInfo(self, id):
         print "id =", id, "...", len(id)
         if id != '':
-            info = DatabaseManager.db.getEmployeeInfo(id)
+            info = Database.getdb().getEmployeeInfo(id)
             _, name, designation, originalPay, originalPayGrade, doj, pan = info
             # self.designation.setText(str(designation))
             self.nameEdit.setText(name)

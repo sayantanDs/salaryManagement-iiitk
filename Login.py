@@ -3,7 +3,7 @@ from PySide.QtCore import Qt, QRegExp
 import sys
 import mysql.connector
 from ShowMySqlError import ShowMysqlError
-import DatabaseManager
+from DatabaseManager import Database
 
 class LoginWidget(QtGui.QDialog):
     def __init__(self, parent=None):
@@ -41,7 +41,8 @@ class LoginWidget(QtGui.QDialog):
 
     def doLogin(self):
         try:
-            if DatabaseManager.db.checkLogin(self.username.text(), self.password.text()):
+            # if DatabaseManager.db.checkLogin(self.username.text(), self.password.text()):
+            if Database.getdb().checkLogin(self.username.text(), self.password.text()):
                 if self._parent is not None:
                     self._parent.gotoPage("Home")
             else:

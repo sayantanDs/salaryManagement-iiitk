@@ -1,5 +1,5 @@
 from PySide import QtGui, QtCore
-import DatabaseManager
+from DatabaseManager import Database
 import mysql.connector
 from ShowMySqlError import ShowMysqlError
 
@@ -62,7 +62,7 @@ class EditDesignationWidget(QtGui.QWidget):
     def loadInfo(self, designation):
         if designation != "":
             self.desig.setText(designation)
-            designation, d_a, h_a, t_a, i_t, p_t = DatabaseManager.db.getDesignationInfo(designation)
+            designation, d_a, h_a, t_a, i_t, p_t = Database.getdb().getDesignationInfo(designation)
             self.da.setText(str(d_a))
             self.ha.setText(str(h_a))
             self.ta.setText(str(t_a))
@@ -82,7 +82,7 @@ class EditDesignationWidget(QtGui.QWidget):
 
     def loadDesignations(self):
         self.chooseDesig.clear()
-        self.desigList = DatabaseManager.db.getDesignations()
+        self.desigList = Database.getdb().getDesignations()
         self.chooseDesig.addItems(self.desigList)
         self.chooseDesig.setCurrentIndex(-1)
 
@@ -101,7 +101,7 @@ class EditDesignationWidget(QtGui.QWidget):
             msg.exec_()
         else:
             try:
-                DatabaseManager.db.editDesignationInfo(desg, da, ha, ta, it, pt, field)
+                Database.getdb().editDesignationInfo(desg, da, ha, ta, it, pt, field)
                 self.loadDesignations()
                 self.clearInfo()
             except mysql.connector.Error as e:

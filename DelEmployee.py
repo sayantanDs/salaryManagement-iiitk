@@ -1,4 +1,4 @@
-import DatabaseManager
+from DatabaseManager import Database
 from PySide import QtGui
 from CustomWidgets import SearchBox
 
@@ -10,7 +10,7 @@ class DelEmployeeWidget(QtGui.QWidget):
         self.title = "Delete Employee"
         self.idList = []
 
-        nameList = DatabaseManager.db.getEmployeeNameList()
+        nameList = Database.getdb().getEmployeeNameList()
         self.name = SearchBox(self, nameList)
         self.name.setPlaceholderText("Enter Name")
 
@@ -37,12 +37,12 @@ class DelEmployeeWidget(QtGui.QWidget):
         self.setupUI()
 
     def loadNameList(self):
-        self.name = SearchBox(self, DatabaseManager.db.getEmployeeNameList())
+        self.name = SearchBox(self, Database.getdb().getEmployeeNameList())
 
 
     def setIdList(self, name):
         self.id.clear()
-        self.id.addItems(DatabaseManager.db.getIdListForName(name))
+        self.id.addItems(Database.getdb().getIdListForName(name))
 
     def goBack(self):
         if self.__parent is not None:
@@ -50,7 +50,7 @@ class DelEmployeeWidget(QtGui.QWidget):
 
     def updateInformation(self, id):
 
-        info = DatabaseManager.db.getEmployeeInfo(id)
+        info = Database.getdb().getEmployeeInfo(id)
         if info is None:
             self.designation.clear()
             self.joinDate.clear()
@@ -128,12 +128,12 @@ class DelEmployeeWidget(QtGui.QWidget):
                                                 QtGui.QMessageBox.Yes | QtGui.QMessageBox.No)
             if choice == QtGui.QMessageBox.Yes:
                 try:
-                    DatabaseManager.db.delEmployee(self.id.currentText(), self.name.text())
+                    Database.getdb().delEmployee(self.id.currentText(), self.name.text())
                     msg = QtGui.QMessageBox(QtGui.QMessageBox.NoIcon, "Success", "Deleted Successfully", parent=self)
                     msg.exec_()
                     # reload name list
                     self.name.clear()
-                    nameList = DatabaseManager.db.getEmployeeNameList()
+                    nameList = Database.getdb().getEmployeeNameList()
                     self.name.addItems(nameList)
                     self.name.setCurrentIndex(-1)
 
