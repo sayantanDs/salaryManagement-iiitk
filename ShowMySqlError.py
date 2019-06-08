@@ -1,11 +1,12 @@
 from PySide import QtGui
+from mysql.connector import errorcode
 
 
 def ShowMysqlError(e, parent=None):
     m = str(e)
-    if e.errno == 2003:
+    if e.errno == errorcode.CR_CONN_HOST_ERROR:
         m = "Unable to connect server! Please check your connection!"
-    elif e.errno == 1062:
+    elif e.errno == errorcode.ER_DUP_ENTRY:
         m = "Unable to add duplicate entry! Please check the data and try again!"
 
     else:
