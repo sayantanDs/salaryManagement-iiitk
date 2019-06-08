@@ -1,11 +1,25 @@
 import mysql.connector
 import hashlib
 
+
+class Database:
+    __instance = None
+
+    @staticmethod
+    def connect(host, databaseName, username, password=None):
+        Database.__instance = DatabaseManager(host,
+                                              databaseName,
+                                              username,
+                                              password)
+    @staticmethod
+    def getdb():
+        if Database.__instance is None:
+            raise Exception("Database connection needs to be created first using creatdb()!")
+        return Database.__instance
+
 '''
 Class to manage all database access
 '''
-
-
 class DatabaseManager:
     def __init__(self, host, databaseName, username, password=None):
 
