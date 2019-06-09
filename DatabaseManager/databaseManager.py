@@ -1,7 +1,6 @@
 import mysql.connector
 import hashlib
-from CustomClasses import Employee
-
+from CustomClasses import Employee, Designation
 
 class Database:
     __instance = None
@@ -77,7 +76,7 @@ class DatabaseManager:
                   "Pan = %s " + \
                   "WHERE ID = %s"
         print command
-        t = tuple(list(emp)[1:] + [emp.id])
+        t = (emp)[1:] + (emp.id,)
         self.mycursor.execute(command, t)
         self.mydb.commit()
 
@@ -125,22 +124,21 @@ class DatabaseManager:
         list = [str(x[0]) for x in self.mycursor.fetchall()]
         return list
 
-    def addDesignation(self, designation, da, ha, ta, it, pt):
-        try:
-            insert = "INSERT INTO " + self.designationTableName + "  VALUES(%s, %s, %s, %s, %s, %s)"
-            self.mycursor.execute(insert,(designation, da, ha, ta, it, pt))
-            self.mydb.commit()
-
-        # Note: properly handle exception here
-        except Exception as e:
-            raise e
+    # def addDesignation(self, designation, da, ha, ta, it, pt):
+    def addDesignation(self, desig):
+        insert = "INSERT INTO " + self.designationTableName + "  VALUES(%s, %s, %s, %s, %s, %s)"
+        self.mycursor.execute(insert, desig.toTuple())
+        self.mydb.commit()
 
     def getDesignationInfo(self, designation):
         command = "SELECT * FROM " + self.designationTableName + " WHERE designation = %s"
         self.mycursor.execute(command,(designation,))
-        return self.mycursor.fetchone()
+        res = self.mycursor.fetchone()
+        if res is None:
+            return None
+        return Designation(*res)
 
-    def editDesignationInfo(self,designation,da,ha,ta,it,pt,origDesignation):
+    def editDesignationInfo(self, desig, origDesignation):
         command="update " + self.designationTableName+" " +\
                 "set designation = %s ,"+\
                 "DA = %s, "+\
@@ -149,10 +147,10 @@ class DatabaseManager:
                 "IT = %s, "+\
                 "PT = %s "+\
                 "where designation = %s"
-        print command
-        self.mycursor.execute(command,(designation,da,ha,ta,it,pt,origDesignation))
-        if designation != origDesignation:
+        print command, tuple(desig) + tuple(origDesignation)
+        self.mycursor.execute(command, tuple(desig) + (origDesignation,))
+        if desig.designation != origDesignation:
             command = "update " + self.employeeTableName + " set designation=%s where designation=%s"
             print command
-            self.mycursor.execute(command, (designation, origDesignation))
+            self.mycursor.execute(command, (desig.designation, origDesignation))
         self.mydb.commit()
