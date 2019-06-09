@@ -2,6 +2,8 @@ from PySide.QtGui import QWidget, QPushButton, QLabel,\
         QLineEdit, QHBoxLayout, QFormLayout, QVBoxLayout, QMessageBox, QDoubleValidator
 
 from DatabaseManager import Database
+from CustomClasses import Designation
+from CustomWidgets import ValidatingLineEdit
 
 '''
 Add Designation Page
@@ -15,17 +17,14 @@ class AddDesignationWidget(QWidget):
         self.__parent = parent
         self.title = "Add Designation"
 
-        self.designation = QLineEdit()
-        self.da = QLineEdit()
-        self.da.setValidator(QDoubleValidator())
-        self.hra = QLineEdit()
-        self.hra.setValidator(QDoubleValidator())
-        self.ta = QLineEdit()
-        self.ta.setValidator(QDoubleValidator())
-        self.it = QLineEdit()
-        self.it.setValidator(QDoubleValidator())
-        self.pt = QLineEdit()
-        self.pt.setValidator(QDoubleValidator())
+        self.designation = ValidatingLineEdit("Designation", "[a-zA-Z0-9-_\s]+", self)
+        self.da = ValidatingLineEdit("Dearness Allowance", QDoubleValidator(), self)
+        self.hra = ValidatingLineEdit("House Rent Allowance", QDoubleValidator(), self)
+        self.ta = ValidatingLineEdit("Transport Allowance", QDoubleValidator(), self)
+        self.it = ValidatingLineEdit("Income Tax", QDoubleValidator(), self)
+        self.pt = ValidatingLineEdit("Professional Tax", QDoubleValidator(), self)
+
+        self.inputs = [self.designation, self.da, self.hra, self.ta, self.it, self.pt]
 
         self.bttnAddDesignation = QPushButton("Add Designation")
         self.bttnCancel = QPushButton("Cancel")
@@ -37,20 +36,22 @@ class AddDesignationWidget(QWidget):
         self.setupUI()
 
     def add(self):
-        designation = self.designation.text()
-        da = self.da.text()
-        hra = self.hra.text()
-        ta = self.ta.text()
-        it = self.it.text()
-        pt = self.pt.text()
+        valid = True
 
-        if "" in [designation, da, hra, ta, it, pt]:
-            msg = QMessageBox(QMessageBox.Information, "Error", "Please enter all the information!", parent=self)
-            msg.exec_()
-        else:
-            print designation, float(da), float(hra), float(ta), float(it), float(pt)
+        for i in range(len(self.inputs)):
+            if not self.inputs[i].isValid():
+                QMessageBox(QMessageBox.Information, "Error", self.inputs[i].getErrorMessage(), parent=self).exec_()
+                valid = False
+                break
+        if valid:
+            desg = Designation(self.designation.text(),
+                                self.da.text(),
+                                self.hra.text(),
+                                self.ta.text(),
+                                self.it.text(),
+                                self.pt.text())
             try:
-                Database.getdb().addDesignation(designation, float(da), float(hra), float(ta), float(it), float(pt))
+                Database.getdb().addDesignation(desg)
                 msg = QMessageBox(QMessageBox.NoIcon, "Success", "Designation added successfully", parent=self)
                 msg.exec_()
                 self.goBack()

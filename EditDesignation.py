@@ -2,6 +2,8 @@ from PySide import QtGui, QtCore
 from DatabaseManager import Database
 import mysql.connector
 from ShowMySqlError import ShowMysqlError
+from CustomWidgets import ValidatingLineEdit
+from CustomClasses import Designation
 
 
 class EditDesignationWidget(QtGui.QWidget):
@@ -10,20 +12,19 @@ class EditDesignationWidget(QtGui.QWidget):
         self.__parent = parent
         self.title = "Edit Designation"
 
-        self.chooseDesig = QtGui.QComboBox()
+        self.chooseDesignation = QtGui.QComboBox()
         self.loadDesignations()
 
+        self.designation = ValidatingLineEdit("Designation", "[a-zA-Z0-9-_\s]+", self)
+        self.da = ValidatingLineEdit("Dearness Allowance", QtGui.QDoubleValidator(), self)
+        self.hra = ValidatingLineEdit("House Rent Allowance", QtGui.QDoubleValidator(), self)
+        self.ta = ValidatingLineEdit("Transport Allowance", QtGui.QDoubleValidator(), self)
+        self.it = ValidatingLineEdit("Income Tax", QtGui.QDoubleValidator(), self)
+        self.pt = ValidatingLineEdit("Professional Tax", QtGui.QDoubleValidator(), self)
+        self.inputs = [self.designation, self.da, self.hra, self.ta, self.it, self.pt]
 
-        self.desig = QtGui.QLineEdit()
-        self.da = QtGui.QLineEdit()
-        self.ha = QtGui.QLineEdit()
-        self.ta = QtGui.QLineEdit()
-        self.it = QtGui.QLineEdit()
-        self.pt = QtGui.QLineEdit()
-        self.chooseDesig.currentIndexChanged.connect(lambda: self.loadInfo(self.chooseDesig.currentText()))
-
+        self.chooseDesignation.currentIndexChanged.connect(lambda: self.loadInfo(self.chooseDesignation.currentText()))
         self.clearInfo()
-
 
         self.bttnCancel = QtGui.QPushButton("Back")
         self.bttnCancel.clicked.connect(self.goBack)
@@ -32,76 +33,60 @@ class EditDesignationWidget(QtGui.QWidget):
         self.bttnSave.setObjectName("OkButton")
         self.bttnCancel.setObjectName("CancelButton")
 
-
         self.setUpUI()
 
+    def setInputReadOnly(self, TrueOrFalse):
+        for i in range(len(self.inputs)):
+            self.inputs[i].setReadOnly(TrueOrFalse)
+            self.inputs[i].setStyle(self.style())
+
     def clearInfo(self):
-        self.desig.clear()
-        self.da.clear()
-        self.ha.clear()
-        self.ta.clear()
-        self.it.clear()
-        self.pt.clear()
-
-        self.desig.setReadOnly(True)
-        self.da.setReadOnly(True)
-        self.ha.setReadOnly(True)
-        self.ta.setReadOnly(True)
-        self.it.setReadOnly(True)
-        self.pt.setReadOnly(True)
-
-        self.desig.setStyle(self.style())
-        self.da.setStyle(self.style())
-        self.ha.setStyle(self.style())
-        self.ta.setStyle(self.style())
-        self.it.setStyle(self.style())
-        self.pt.setStyle(self.style())
-
-
+        for i in range(len(self.inputs)):
+            self.inputs[i].clear()
+        self.setInputReadOnly(True)
 
     def loadInfo(self, designation):
         if designation != "":
-            self.desig.setText(designation)
-            designation, d_a, h_a, t_a, i_t, p_t = Database.getdb().getDesignationInfo(designation)
-            self.da.setText(str(d_a))
-            self.ha.setText(str(h_a))
-            self.ta.setText(str(t_a))
-            self.it.setText(str(i_t))
-            self.pt.setText(str(p_t))
-
-            self.desig.setReadOnly(False)
-            self.da.setReadOnly(False)
-            self.ha.setReadOnly(False)
-            self.ta.setReadOnly(False)
-            self.it.setReadOnly(False)
-            self.pt.setReadOnly(False)
+            self.designation.setText(designation)
+            desig = Database.getdb().getDesignationInfo(designation)
+            self.da.setText(str(desig.da))
+            self.hra.setText(str(desig.hra))
+            self.ta.setText(str(desig.ta))
+            self.it.setText(str(desig.it))
+            self.pt.setText(str(desig.pt))
+            self.setInputReadOnly(False)
 
     def goBack(self):
         if self.__parent is not None:
             self.__parent.goBack()
 
     def loadDesignations(self):
-        self.chooseDesig.clear()
+        self.chooseDesignation.clear()
         self.desigList = Database.getdb().getDesignations()
-        self.chooseDesig.addItems(self.desigList)
-        self.chooseDesig.setCurrentIndex(-1)
+        self.chooseDesignation.addItems(self.desigList)
+        self.chooseDesignation.setCurrentIndex(-1)
 
     def changeDetails(self):
-        field = self.chooseDesig.currentText()
-        desg = self.desig.text()
-        da = self.da.text()
-        ha = self.ha.text()
-        ta = self.ta.text()
-        it = self.it.text()
-        pt = self.pt.text()
-
-        print desg, da + ha + ta + it + pt
-        if "" in [desg, da, ha, ta, it, pt]:
-            msg = QtGui.QMessageBox(QtGui.QMessageBox.Information, "Error", "Please enter all the information!", parent=self)
-            msg.exec_()
+        origDesig = self.chooseDesignation.currentText()
+        valid = True
+        if len(origDesig) == 0:
+            QtGui.QMessageBox(QtGui.QMessageBox.Information, "Error", "Please select a Designation to edit!", parent=self).exec_()
+            valid = False
         else:
+            for i in range(len(self.inputs)):
+                if not self.inputs[i].isValid():
+                    QtGui.QMessageBox(QtGui.QMessageBox.Information, "Error", self.inputs[i].getErrorMessage(), parent=self).exec_()
+                    valid = False
+                    break
+        if valid:
+            desig = Designation(self.designation.text(),
+                               self.da.text(),
+                               self.hra.text(),
+                               self.ta.text(),
+                               self.it.text(),
+                               self.pt.text())
             try:
-                Database.getdb().editDesignationInfo(desg, da, ha, ta, it, pt, field)
+                Database.getdb().editDesignationInfo(desig, origDesig)
                 self.loadDesignations()
                 self.clearInfo()
             except mysql.connector.Error as e:
@@ -123,7 +108,7 @@ class EditDesignationWidget(QtGui.QWidget):
         heading.setObjectName("heading")
         leftPaneLayout.addWidget(heading)
         leftPaneLayout.addSpacing(10)
-        leftPaneLayout.addWidget(self.chooseDesig)
+        leftPaneLayout.addWidget(self.chooseDesignation)
         leftPaneLayout.addStretch()
         leftPane.setLayout(leftPaneLayout)
 
@@ -134,9 +119,9 @@ class EditDesignationWidget(QtGui.QWidget):
         form = QtGui.QFormLayout()
         form.setContentsMargins(10, 10, 10, 30)
         form.setSpacing(20)
-        form.addRow(QtGui.QLabel("Designation:"), self.desig)
+        form.addRow(QtGui.QLabel("Designation:"), self.designation)
         form.addRow(QtGui.QLabel("DA:"), self.da)
-        form.addRow(QtGui.QLabel("HA:"), self.ha)
+        form.addRow(QtGui.QLabel("HA:"), self.hra)
         form.addRow(QtGui.QLabel("TA:"), self.ta)
         form.addRow(QtGui.QLabel("IT:"), self.it)
         form.addRow(QtGui.QLabel("PT:"), self.pt)
