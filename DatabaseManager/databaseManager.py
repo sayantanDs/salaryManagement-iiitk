@@ -1,5 +1,6 @@
 import mysql.connector
 import hashlib
+from CustomClasses import Employee
 
 
 class Database:
@@ -15,6 +16,10 @@ class Database:
     def getdb():
         if Database.__instance is None:
             raise Exception("Database connection needs to be created first using creatdb()!")
+        try:
+            Database.__instance.mydb.ping(reconnect=True, attempts=1, delay=0)
+        except mysql.connector.Error as e:
+            raise e
         return Database.__instance
 
 '''
@@ -29,7 +34,6 @@ class DatabaseManager:
             passwd=password,
             database=databaseName
         )
-
 
         self.designationTableName = "designations"
         self.employeeTableName = "employees"
@@ -52,19 +56,18 @@ class DatabaseManager:
         self.mycursor.execute("INSERT INTO " + self.loginTablename + " VALUES(%s, %s)", (username, hashpass))
         self.mydb.commit()
 
-    def addEmployee(self, id, name, designation, originalPay, originalPayGrade, doj, pan):
+    def addEmployee(self, emp):
         insert = "INSERT INTO " + self.employeeTableName + " VALUES(%s, %s, %s, %s, %s, %s, %s)"
-
-        self.mycursor.execute(insert, (id, name, designation, originalPay, originalPayGrade, doj, pan))
+        self.mycursor.execute(insert, tuple(emp))
         self.mydb.commit()
 
     # Edited by Sattam
-    def delEmployee(self, id, name):
+    def delEmployee(self, id):
         command = "DELETE FROM " + self.employeeTableName + " WHERE ID = %s"
         self.mycursor.execute(command, (id,))
         self.mydb.commit()
 
-    def editEmployee(self, id, name, designation, originalPay, originalPayGrade, doj, pan):
+    def editEmployee(self, emp):
         command = "UPDATE " + self.employeeTableName + " " + \
                   "SET name = %s, " + \
                   "Designation = %s, " + \
@@ -74,7 +77,8 @@ class DatabaseManager:
                   "Pan = %s " + \
                   "WHERE ID = %s"
         print command
-        self.mycursor.execute(command, (name, designation, originalPay, originalPayGrade, doj, pan, id))
+        t = tuple(list(emp)[1:] + [emp.id])
+        self.mycursor.execute(command, t)
         self.mydb.commit()
 
     def changeDetail(self, id, field, newText):
@@ -100,7 +104,10 @@ class DatabaseManager:
     def getEmployeeInfo(self, id):
         command = "SELECT * FROM " + self.employeeTableName + " WHERE ID = %s"
         self.mycursor.execute(command,(id,))
-        return self.mycursor.fetchone()
+        res = self.mycursor.fetchone()
+        if res is None:
+            return None
+        return Employee(*res)
 
     def getAllEmployeeInfo(self):
         command = "SELECT * FROM " + self.employeeTableName
