@@ -40,3 +40,11 @@ class ValidatingLineEdit(QtGui.QLineEdit):
             return self.fieldName + " is required!"
         else:
             return "Invalid input for " + self.fieldName
+
+    def setText(self, *args, **kwargs):
+        QtGui.QLineEdit.setText(self, *args, **kwargs)
+        self.setObjectName("default")
+
+    def clear(self, *args, **kwargs):
+        QtGui.QLineEdit.clear(self, *args, **kwargs)
+        self.setObjectName("default")
