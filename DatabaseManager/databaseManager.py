@@ -76,7 +76,7 @@ class DatabaseManager:
                   "Pan = %s " + \
                   "WHERE ID = %s"
         print command
-        t = (emp)[1:] + (emp.id,)
+        t = tuple(list(emp)[1:] + [emp.id])
         self.mycursor.execute(command, t)
         self.mydb.commit()
 
@@ -147,7 +147,6 @@ class DatabaseManager:
                 "IT = %s, "+\
                 "PT = %s "+\
                 "where designation = %s"
-        print command, tuple(desig) + tuple(origDesignation)
         self.mycursor.execute(command, tuple(desig) + (origDesignation,))
         if desig.designation != origDesignation:
             command = "update " + self.employeeTableName + " set designation=%s where designation=%s"
