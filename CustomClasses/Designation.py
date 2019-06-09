@@ -6,3 +6,11 @@ class Designation:
         self.ta = float(ta)
         self.it = float(it)
         self.pt = float(pt)
+
+    def toTuple(self):
+        return (self.designation, self.da, self.hra, self.ta, self.it, self.pt)
+
+    def __iter__(self):
+        t = self.toTuple()
+        for x in t:
+            yield x
