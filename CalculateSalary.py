@@ -112,17 +112,14 @@ class CalculateSalaryWidget(QWidget):
     def loadInfo(self, id):
         print "id =", id, "...", len(id)
         if id != '':
-            # info = DatabaseManager.db.getEmployeeInfo(id)
-            info = Database.getdb().getEmployeeInfo(id)
-            _, _, designation, originalPay, originalPayGrade, doj, pan = info
-            self.designation.setText(str(designation))
-            self.originalPay.setText(str(originalPay))
-            self.originalPayGrade.setText(str(originalPayGrade))
-            self.DOJ.setText("%02d/%02d/%4d" % (doj.day, doj.month, doj.year))
-            self.pan.setText(str(pan))
+            emp = Database.getdb().getEmployeeInfo(id)
+            self.designation.setText(emp.designation)
+            self.originalPay.setText(str(emp.originalPay))
+            self.originalPayGrade.setText(str(emp.originalPayGrade))
+            self.DOJ.setText(emp.getStrDate())
+            self.pan.setText(emp.pan)
 
-            # _, da, hra, ta, it, pt = DatabaseManager.db.getDesignationInfo(designation)
-            _, da, hra, ta, it, pt = Database.getdb().getDesignationInfo(designation)
+            _, da, hra, ta, it, pt = Database.getdb().getDesignationInfo(emp.designation)
 
             self.da_percent.setText(str(da))
             self.hra_percent.setText(str(hra))
@@ -132,7 +129,6 @@ class CalculateSalaryWidget(QWidget):
 
     def setIDList(self, name):
         self.id.clear()
-        # self.id.addItems(DatabaseManager.db.getIdListForName(name))
         self.id.addItems(Database.getdb().getIdListForName(name))
 
     def goBack(self):
