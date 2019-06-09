@@ -1,9 +1,11 @@
+from PySide import QtGui, QtCore
 from PySide.QtGui import QWidget, QLineEdit, QRegExpValidator, QComboBox, QPushButton, QLabel,\
     QHBoxLayout, QFormLayout, QVBoxLayout, QMessageBox, QDoubleValidator, QGroupBox, QFrame
 from PySide.QtCore import QRegExp, QDate
 
-from CustomWidgets import DatePicker, SearchBox
-from DatabaseManager import  Database
+from CustomClasses import Employee
+from CustomWidgets import DatePicker, SearchBox, ValidatingLineEdit
+from DatabaseManager import Database
 
 import mysql.connector
 from ShowMySqlError import ShowMysqlError
@@ -29,17 +31,13 @@ class EditEmployeeWidget(QWidget):
         self.nameSearch.returnPressed.connect(self.setIDList)
 
         # ------elements for ediiting employee-----------
-        self.nameEdit = QLineEdit(self)
-        self.nameEdit.setValidator(QRegExpValidator(QRegExp("[a-zA-Z\s]+")))
+        self.nameEdit = ValidatingLineEdit("Name", "[a-zA-Z\s]+", self)
         self.designation = QComboBox(self)
-
-        self.originalPay = QLineEdit(self)
-        self.originalPay.setValidator(QDoubleValidator())
-        self.originalPayGrade = QLineEdit(self)
-        self.originalPayGrade.setValidator(QDoubleValidator())
+        self.originalPay = ValidatingLineEdit("Original Pay", QDoubleValidator(), self)
+        self.originalPayGrade = ValidatingLineEdit("Original Pay Grade", QDoubleValidator(), self)
         self.DOJ = DatePicker(self)
-        self.pan = QLineEdit(self)
-        self.pan.setValidator(QRegExpValidator(QRegExp("[A-Z]{5}\d{4}[A-Z]")))
+        self.pan = ValidatingLineEdit("PAN", "[A-Z]{5}\d{4}[A-Z]", self)
+        self.inputs = [self.nameEdit, self.originalPay, self.originalPayGrade, self.pan]
 
         self.bttnSave = QPushButton("Save Changes")
         self.bttnCancel = QPushButton("Back")
@@ -55,29 +53,46 @@ class EditEmployeeWidget(QWidget):
         self.setupUI()
 
     def save(self):
-        id = self.id.currentText()
-        name = self.nameEdit.text()
-        designation = self.designation.currentText()
-        originalPay = self.originalPay.text()
-        originalPayGrade = self.originalPayGrade.text()
-        doj = self.DOJ.getDate()
-        doj = "%4d-%02d-%02d" % (doj.year(), doj.month(), doj.day())
-        pan = self.pan.text()
-
-        print name, designation, originalPay, originalPayGrade, doj, pan
-
-        if "" in [id, name, designation, originalPay, originalPayGrade, doj, pan]:
-            msg = QMessageBox(QMessageBox.Information, "Error", "Please enter all the information!", parent=self)
-            msg.exec_()
+        valid = True
+        if len(self.id.currentText()) == 0:
+            QMessageBox(QMessageBox.Information, "Error", "Please select name and ID!", parent=self).exec_()
+            valid = False
         else:
+            for i in range(len(self.inputs)):
+                if not self.inputs[i].isValid():
+                    valid = False
+                    QtGui.QMessageBox(QtGui.QMessageBox.Information, "Error", self.inputs[i].getErrorMessage(),
+                                            parent=self).exec_()
+                    break
 
+        if valid:
+            emp = Employee(self.id.currentText(),
+                           self.nameEdit.text(),
+                           self.designation.currentText(),
+                           self.originalPay.text(),
+                           self.originalPayGrade.text(),
+                           self.DOJ.getDate(),
+                           self.pan.text())
             try:
-                Database.getdb().editEmployee(id, name, designation, float(originalPay), float(originalPayGrade), doj, pan)
+                Database.getdb().editEmployee(emp)
             except mysql.connector.Error as e:
                 ShowMysqlError(e, self)
                 return
 
             QMessageBox(QMessageBox.NoIcon, "Success", "Employee edited successfully", parent=self).exec_()
+
+    def setInputReadOnly(self, TrueOrFalse):
+        self.nameEdit.setReadOnly(TrueOrFalse)
+        self.originalPay.setReadOnly(TrueOrFalse)
+        self.originalPayGrade.setReadOnly(TrueOrFalse)
+        self.DOJ.setReadOnly(TrueOrFalse)
+        self.pan.setReadOnly(TrueOrFalse)
+        # reload stylesheet to refelect changes of readonly
+        self.nameEdit.setStyle(self.style())
+        self.originalPay.setStyle(self.style())
+        self.originalPayGrade.setStyle(self.style())
+        self.DOJ.setStyle(self.style())
+        self.pan.setStyle(self.style())
 
     def clearInfo(self):
         self.id.setCurrentIndex(-1)
@@ -88,17 +103,18 @@ class EditEmployeeWidget(QWidget):
         self.DOJ.clear()
         self.pan.clear()
 
-        self.nameEdit.setReadOnly(True)
-        self.originalPay.setReadOnly(True)
-        self.originalPayGrade.setReadOnly(True)
-        self.DOJ.setReadOnly(True)
-        self.pan.setReadOnly(True)
-        # reload stylesheet to refelect changes of readonly
-        self.nameEdit.setStyle(self.style())
-        self.originalPay.setStyle(self.style())
-        self.originalPayGrade.setStyle(self.style())
-        self.DOJ.setStyle(self.style())
-        self.pan.setStyle(self.style())
+        self.setInputReadOnly(True)
+        # self.nameEdit.setReadOnly(True)
+        # self.originalPay.setReadOnly(True)
+        # self.originalPayGrade.setReadOnly(True)
+        # self.DOJ.setReadOnly(True)
+        # self.pan.setReadOnly(True)
+        # # reload stylesheet to refelect changes of readonly
+        # self.nameEdit.setStyle(self.style())
+        # self.originalPay.setStyle(self.style())
+        # self.originalPayGrade.setStyle(self.style())
+        # self.DOJ.setStyle(self.style())
+        # self.pan.setStyle(self.style())
 
     def setIDList(self, name):
         self.id.clear()
@@ -107,28 +123,26 @@ class EditEmployeeWidget(QWidget):
     def loadInfo(self, id):
         print "id =", id, "...", len(id)
         if id != '':
-            info = Database.getdb().getEmployeeInfo(id)
-            _, name, designation, originalPay, originalPayGrade, doj, pan = info
-            # self.designation.setText(str(designation))
-            self.nameEdit.setText(name)
-            self.designation.setCurrentIndex(self.designation.findText(str(designation)))
-            self.originalPay.setText(str(originalPay))
-            self.originalPayGrade.setText(str(originalPayGrade))
-            # self.DOJ.setText("%02d/%02d/%4d" % (doj.day, doj.month, doj.year))
-            self.DOJ.setDate(QDate(doj.year, doj.month, doj.day))
-            self.pan.setText(str(pan))
+            emp = Database.getdb().getEmployeeInfo(id)
+            self.nameEdit.setText(emp.name)
+            self.designation.setCurrentIndex(self.designation.findText(emp.designation))
+            self.originalPay.setText(str(emp.originalPay))
+            self.originalPayGrade.setText(str(emp.originalPayGrade))
+            self.DOJ.setDate(emp.getQDate())
+            self.pan.setText(emp.pan)
 
-            self.nameEdit.setReadOnly(False)
-            self.originalPay.setReadOnly(False)
-            self.originalPayGrade.setReadOnly(False)
-            self.DOJ.setReadOnly(False)
-            self.pan.setReadOnly(False)
-            # reload stylesheet to refelect changes of readonly
-            self.nameEdit.setStyle(self.style())
-            self.originalPay.setStyle(self.style())
-            self.originalPayGrade.setStyle(self.style())
-            self.DOJ.setStyle(self.style())
-            self.pan.setStyle(self.style())
+            self.setInputReadOnly(False)
+            # self.nameEdit.setReadOnly(False)
+            # self.originalPay.setReadOnly(False)
+            # self.originalPayGrade.setReadOnly(False)
+            # self.DOJ.setReadOnly(False)
+            # self.pan.setReadOnly(False)
+            # # reload stylesheet to refelect changes of readonly
+            # self.nameEdit.setStyle(self.style())
+            # self.originalPay.setStyle(self.style())
+            # self.originalPayGrade.setStyle(self.style())
+            # self.DOJ.setStyle(self.style())
+            # self.pan.setStyle(self.style())
 
     def goBack(self):
         if self.__parent is not None:
