@@ -50,16 +50,15 @@ class DelEmployeeWidget(QtGui.QWidget):
 
     def updateInformation(self, id):
 
-        info = Database.getdb().getEmployeeInfo(id)
-        if info is None:
+        emp = Database.getdb().getEmployeeInfo(id)
+        if emp is None:
             self.designation.clear()
             self.joinDate.clear()
             self.panNo.clear()
         else:
-            id, name, des, opa, opag, doj, pan = info
-            self.designation.setText(des)
-            self.joinDate.setText("%02d/%02d/%04d" % (doj.day, doj.month, doj.year))
-            self.panNo.setText(pan)
+            self.designation.setText(emp.designation)
+            self.joinDate.setText(emp.getStrDate())
+            self.panNo.setText(emp.pan)
 
     def setupUI(self):
 
@@ -128,7 +127,7 @@ class DelEmployeeWidget(QtGui.QWidget):
                                                 QtGui.QMessageBox.Yes | QtGui.QMessageBox.No)
             if choice == QtGui.QMessageBox.Yes:
                 try:
-                    Database.getdb().delEmployee(self.id.currentText(), self.name.text())
+                    Database.getdb().delEmployee(self.id.currentText())
                     msg = QtGui.QMessageBox(QtGui.QMessageBox.NoIcon, "Success", "Deleted Successfully", parent=self)
                     msg.exec_()
                     # reload name list
