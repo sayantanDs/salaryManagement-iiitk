@@ -11,6 +11,9 @@ class CalculateSalaryWidget(QWidget):
         self.__parent = parent
         self.title = "Calculate Salary"
 
+        self.__desg = None
+        self.__emp = None
+
         t = datetime.now()
         self.month = QComboBox()
         self.month.addItems(["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE",
@@ -65,34 +68,12 @@ class CalculateSalaryWidget(QWidget):
 
 
     def calculate(self):
-        if "" in (self.id.currentText(),
-                  self.name.text(),
-                  self.designation.text(),
-                  self.originalPay.text(),
-                  self.originalPayGrade.text(),
-                  self.DOJ.text(),
-                  self.pan.text(),
-                  self.da_percent.text(),
-                  self.hra_percent.text(),
-                  self.ta_percent.text(),
-                  self.it_percent.text(),
-                  self.pt_percent.text()):
-            msg = QMessageBox(QMessageBox.Information, "Error", "Please enter all the information!", parent=self)
-            msg.exec_()
+        if self.__emp is None:
+            QMessageBox(QMessageBox.Information, "Error", "Please select an employee!", parent=self).exec_()
         else:
             if self.__parent is not None:
-                self.__parent.gotoPage("Result", (self.id.currentText(),
-                                      self.name.text(),
-                                      self.designation.text(),
-                                      self.originalPay.text(),
-                                      self.originalPayGrade.text(),
-                                      self.DOJ.text(),
-                                      self.pan.text(),
-                                      self.da_percent.text(),
-                                      self.hra_percent.text(),
-                                      self.ta_percent.text(),
-                                      self.it_percent.text(),
-                                      self.pt_percent.text(),
+                self.__parent.gotoPage("Result", (self.__emp,
+                                      self.__desg,
                                       self.month.currentText(),
                                       self.year.text()))
 
@@ -108,24 +89,26 @@ class CalculateSalaryWidget(QWidget):
         self.ta_percent.clear()
         self.it_percent.clear()
         self.pt_percent.clear()
+        self.__desg = None
+        self.__emp = None
 
     def loadInfo(self, id):
         print "id =", id, "...", len(id)
         if id != '':
-            emp = Database.getdb().getEmployeeInfo(id)
-            self.designation.setText(emp.designation)
-            self.originalPay.setText(str(emp.originalPay))
-            self.originalPayGrade.setText(str(emp.originalPayGrade))
-            self.DOJ.setText(emp.getStrDate())
-            self.pan.setText(emp.pan)
+            self.__emp = Database.getdb().getEmployeeInfo(id)
+            self.designation.setText(self.__emp.designation)
+            self.originalPay.setText(str(self.__emp.originalPay))
+            self.originalPayGrade.setText(str(self.__emp.originalPayGrade))
+            self.DOJ.setText(self.__emp.getStrDate())
+            self.pan.setText(self.__emp.pan)
 
-            _, da, hra, ta, it, pt = Database.getdb().getDesignationInfo(emp.designation)
+            self.__desg = Database.getdb().getDesignationInfo(self.__emp.designation)
 
-            self.da_percent.setText(str(da))
-            self.hra_percent.setText(str(hra))
-            self.ta_percent.setText(str(ta))
-            self.it_percent.setText(str(it))
-            self.pt_percent.setText(str(pt))
+            self.da_percent.setText(str(self.__desg.da))
+            self.hra_percent.setText(str(self.__desg.hra))
+            self.ta_percent.setText(str(self.__desg.ta))
+            self.it_percent.setText(str(self.__desg.it))
+            self.pt_percent.setText(str(self.__desg.pt))
 
     def setIDList(self, name):
         self.id.clear()
@@ -202,7 +185,6 @@ class CalculateSalaryWidget(QWidget):
         table.addWidget(rightGroup)
 
         layout.addLayout(table)
-
 
         layout.addStretch()
         bttnLayout = QHBoxLayout()

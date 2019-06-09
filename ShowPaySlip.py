@@ -5,14 +5,8 @@ from printPaySlip import printPaySlip
 class ShowPaySlipWidget(QWidget):
     def __init__(self,
                  parent,
-                 id,
-                 name,
-                 designation,
-                 origPay,
-                 origGradePay,
-                 doj,
-                 pan,
-                 da_percent, hra_percent, ta_percent, it_percent, pt_percent,
+                 emp,
+                 desg,
                  month, year):
         QWidget.__init__(self)
         self.title = "Salary Result"
@@ -21,15 +15,13 @@ class ShowPaySlipWidget(QWidget):
         self.__parent = parent
 
         year = int(year)
-        origPay = float(origPay)
-        origGradePay = float(origGradePay)
 
-        presentPay = origPay + origGradePay
-        da = (presentPay * float(da_percent))/100
-        hra = (presentPay * float(hra_percent)) / 100
-        ta = (presentPay * float(ta_percent)) / 100
-        it = (presentPay * float(it_percent)) / 100
-        pt = (presentPay * float(pt_percent)) / 100
+        presentPay = emp.originalPay + emp.originalPayGrade
+        da = (presentPay * desg.da)/100
+        hra = (presentPay * desg.hra) / 100
+        ta = (presentPay * desg.ta) / 100
+        it = (presentPay * desg.it) / 100
+        pt = (presentPay * desg.pt) / 100
 
         grossEarnings = presentPay + da + hra + ta
         grossDeductions = it + pt
@@ -39,44 +31,44 @@ class ShowPaySlipWidget(QWidget):
         self.year = str(year)
         self.id = QLineEdit()
         self.id.setReadOnly(True)
-        self.id.setText(id)
+        self.id.setText(emp.id)
         self.name = QLineEdit()
         self.name.setReadOnly(True)
-        self.name.setText(name)
+        self.name.setText(emp.name)
         self.designation = QLineEdit()
         self.designation.setReadOnly(True)
-        self.designation.setText(designation)
+        self.designation.setText(emp.designation)
         self.originalPay = QLineEdit()
         self.originalPay.setReadOnly(True)
-        self.originalPay.setText(str(origPay))
+        self.originalPay.setText(str(emp.originalPay))
         self.originalPayGrade = QLineEdit()
         self.originalPayGrade.setReadOnly(True)
-        self.originalPayGrade.setText(str(origGradePay))
+        self.originalPayGrade.setText(str(emp.originalPayGrade))
         self.DOJ = QLineEdit()
         self.DOJ.setReadOnly(True)
-        self.DOJ.setText(doj)
+        self.DOJ.setText(emp.getStrDate())
         self.pan = QLineEdit()
         self.pan.setReadOnly(True)
-        self.pan.setText(pan)
+        self.pan.setText(emp.pan)
 
         self.presentPay = QLineEdit()
         self.presentPay.setReadOnly(True)
         self.presentPay.setText(str(presentPay))
         self.da = QLineEdit()
         self.da.setReadOnly(True)
-        self.da.setText(str(da))
+        self.da.setText(str(desg.da))
         self.hra = QLineEdit()
         self.hra.setReadOnly(True)
-        self.hra.setText(str(hra))
+        self.hra.setText(str(desg.hra))
         self.ta = QLineEdit()
         self.ta.setReadOnly(True)
-        self.ta.setText(str(ta))
+        self.ta.setText(str(desg.ta))
         self.it = QLineEdit()
         self.it.setReadOnly(True)
         self.it.setText(str(it))
         self.pt = QLineEdit()
         self.pt.setReadOnly(True)
-        self.pt.setText(str(pt))
+        self.pt.setText(str(desg.pt))
 
         self.grossAllowance = QLineEdit()
         self.grossAllowance.setReadOnly(True)
