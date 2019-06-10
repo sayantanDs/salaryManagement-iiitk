@@ -1,6 +1,7 @@
 from PySide.QtGui import QWidget, QApplication, QPushButton, QLabel,\
         QLineEdit, QComboBox, QHBoxLayout, QFormLayout, QVBoxLayout, QMessageBox, QFrame, QFileDialog, QSpinBox, QGroupBox
 from printPaySlip import printPaySlip
+from CustomClasses import Salary
 
 class ShowPaySlipWidget(QWidget):
     def __init__(self,
@@ -13,19 +14,7 @@ class ShowPaySlipWidget(QWidget):
         # self.setGeometry(50, 50, 800, 600)
 
         self.__parent = parent
-
-        year = int(year)
-
-        presentPay = emp.originalPay + emp.originalPayGrade
-        da = (presentPay * desg.da)/100
-        hra = (presentPay * desg.hra) / 100
-        ta = (presentPay * desg.ta) / 100
-        it = (presentPay * desg.it) / 100
-        pt = (presentPay * desg.pt) / 100
-
-        grossEarnings = presentPay + da + hra + ta
-        grossDeductions = it + pt
-        netPay = grossEarnings - grossDeductions
+        self.salary = Salary(emp, desg, month, year)
 
         self.month = str(month)
         self.year = str(year)
@@ -53,33 +42,33 @@ class ShowPaySlipWidget(QWidget):
 
         self.presentPay = QLineEdit()
         self.presentPay.setReadOnly(True)
-        self.presentPay.setText(str(presentPay))
+        self.presentPay.setText(str(self.salary.presentPay))
         self.da = QLineEdit()
         self.da.setReadOnly(True)
-        self.da.setText(str(desg.da))
+        self.da.setText(str(self.salary.da))
         self.hra = QLineEdit()
         self.hra.setReadOnly(True)
-        self.hra.setText(str(desg.hra))
+        self.hra.setText(str(self.salary.hra))
         self.ta = QLineEdit()
         self.ta.setReadOnly(True)
-        self.ta.setText(str(desg.ta))
+        self.ta.setText(str(self.salary.ta))
         self.it = QLineEdit()
         self.it.setReadOnly(True)
-        self.it.setText(str(it))
+        self.it.setText(str(self.salary.it))
         self.pt = QLineEdit()
         self.pt.setReadOnly(True)
-        self.pt.setText(str(desg.pt))
+        self.pt.setText(str(self.salary.pt))
 
         self.grossAllowance = QLineEdit()
         self.grossAllowance.setReadOnly(True)
-        self.grossAllowance.setText(str(grossEarnings))
+        self.grossAllowance.setText(str(self.salary.grossEarnings))
         self.grossDeduction = QLineEdit()
         self.grossDeduction.setReadOnly(True)
-        self.grossDeduction.setText(str(grossDeductions))
+        self.grossDeduction.setText(str(self.salary.grossDeductions))
 
         self.netPay = QLineEdit()
         self.netPay.setReadOnly(True)
-        self.netPay.setText(str(netPay))
+        self.netPay.setText(str(self.salary.netPay))
 
         self.setupUI()
 
@@ -153,9 +142,4 @@ class ShowPaySlipWidget(QWidget):
             self.__parent.goBack()
 
     def printSlip(self):
-        printPaySlip(self.id.text(), self.name.text(), self.designation.text(),
-                        float(self.originalPay.text()), float(self.originalPayGrade.text()), self.DOJ.text(),
-                        self.pan.text(), float(self.da.text()), float(self.hra.text()), float(self.ta.text()),
-                        float(self.it.text()), float(self.pt.text()), float(self.presentPay.text()),
-                        float(self.grossAllowance.text()), float(self.grossDeduction.text()), float(self.netPay.text()),
-                        self.month, int(self.year))
+        printPaySlip(*self.salary.result())
