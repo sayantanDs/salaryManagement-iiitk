@@ -272,6 +272,18 @@ QLineEdit#invalid:hover
 {
     border : 1px solid rgb(255, 140, 140);
 }
+QComboBox#searchBox
+{
+    padding-right: 25px;
+}
+QToolButton#search
+{
+    border: 0px;
+    border-radius: 2px;
+    padding-top: 2px;
+    padding-right: 2px;
+    background:transparent;
+}
 QCalendarWidget QMenu,
 QComboBox QAbstractItemView
 {

@@ -32,6 +32,20 @@ class SearchBox(QtGui.QComboBox):
         shortcut = QtGui.QShortcut(QtGui.QKeySequence(QtCore.Qt.Key_Return), self, self.__onEnter)
         shortcut = QtGui.QShortcut(QtGui.QKeySequence(QtCore.Qt.Key_Enter), self, self.__onEnter)
 
+        self.button = QtGui.QToolButton(self)
+        self.button.setIcon(QtGui.QIcon(QtGui.QPixmap("Resources/search.png")))
+        self.button.setIconSize(QtCore.QSize(18, 18))
+        self.button.setCursor(QtCore.Qt.ArrowCursor)
+        self.button.clicked.connect(self.__onEnter)
+        self.setObjectName("searchBox")
+        self.button.setObjectName("search")
+
+    def resizeEvent(self, *args, **kwargs):
+        QtGui.QComboBox.resizeEvent(self, *args, **kwargs)
+        buttonSize = self.button.sizeHint()
+        self.button.move(self.rect().right() - buttonSize.width() - 15,
+                         (self.rect().bottom() - buttonSize.height() + 1) / 2)
+
     def __onTextChange(self):
         self.__textChangeStatus = True
 
