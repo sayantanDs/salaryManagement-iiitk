@@ -1,7 +1,12 @@
+from PySide import QtGui, QtCore
 from PySide.QtGui import QWidget, QApplication, QPushButton, QLabel,\
         QLineEdit, QComboBox, QHBoxLayout, QFormLayout, QVBoxLayout, QMessageBox, QFrame, QFileDialog, QSpinBox, QGroupBox
 from printPaySlip import printPaySlip
 from CustomClasses import Salary
+from DatabaseManager import Database
+import mysql.connector
+from mysql.connector import errorcode
+from ShowMySqlError import ShowMysqlError
 
 class ShowPaySlipWidget(QWidget):
     def __init__(self,
@@ -121,7 +126,7 @@ class ShowPaySlipWidget(QWidget):
         netPayLayout.addStretch()
         layout.addLayout(netPayLayout)
 
-        self.bttnPrint = QPushButton("Print")
+        self.bttnPrint = QPushButton("Confirm")
         self.bttnPrint.clicked.connect(self.printSlip)
         self.bttnCancel = QPushButton("Back")
         self.bttnCancel.clicked.connect(self.goBack)
@@ -142,4 +147,20 @@ class ShowPaySlipWidget(QWidget):
             self.__parent.goBack()
 
     def printSlip(self):
-        printPaySlip(*self.salary.result())
+        try:
+            Database.getdb().saveSalary(self.salary)
+            printPaySlip(*self.salary.result())
+        except mysql.connector.Error as e:
+            if e.errno == errorcode.ER_DUP_ENTRY:
+                choice = QtGui.QMessageBox.question(self, 'Replace?',
+                                                    "Salary calculation of " + self.salary.id + " for " + self.salary.month
+                                                    + ", " + str(self.salary.year) + " already exists! Do you want to replace it?",
+                                                    QtGui.QMessageBox.Yes | QtGui.QMessageBox.No)
+                if choice == QtGui.QMessageBox.Yes:
+                    try:
+                        Database.getdb().replaceSalary(self.salary)
+                        printPaySlip(*self.salary.result())
+                    except mysql.connector.Error as e:
+                        ShowMysqlError(e)
+            else:
+                ShowMysqlError(e)

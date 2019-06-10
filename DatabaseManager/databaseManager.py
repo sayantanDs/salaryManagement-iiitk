@@ -37,6 +37,7 @@ class DatabaseManager:
         self.designationTableName = "designations"
         self.employeeTableName = "employees"
         self.loginTablename = "login"
+        self.salaryTableName = "salary"
 
         self.mycursor = self.mydb.cursor()
 
@@ -153,3 +154,13 @@ class DatabaseManager:
             print command
             self.mycursor.execute(command, (desig.designation, origDesignation))
         self.mydb.commit()
+
+    def saveSalary(self, salary):
+        insert = "INSERT INTO " + self.salaryTableName + "  VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+        self.mycursor.execute(insert, salary.toTuple())
+        self.mydb.commit()
+
+    def replaceSalary(self, salary):
+        delete = "DELETE FROM " + self.salaryTableName + "  WHERE ID=%s AND Date=%s"
+        self.mycursor.execute(delete, (salary.id, salary.date))
+        self.saveSalary(salary)
