@@ -1,6 +1,8 @@
 from PySide.QtGui import QWidget, QApplication, QPushButton, QLabel,\
         QLineEdit, QComboBox, QHBoxLayout, QFormLayout, QVBoxLayout, QMessageBox, QFrame, QFileDialog, QSpinBox, QGroupBox
 from datetime import datetime
+
+from CustomClasses import Designation
 from DatabaseManager import Database
 from CustomWidgets import SearchBox, ValueBox
 from ShowMySqlError import ShowMysqlError
@@ -11,7 +13,7 @@ class CalculateSalaryWidget(QWidget):
         self.__parent = parent
         self.title = "Calculate Salary"
 
-        self.__desg = None
+        self.__desig = None
         self.__emp = None
 
         t = datetime.now()
@@ -73,7 +75,12 @@ class CalculateSalaryWidget(QWidget):
         else:
             if self.__parent is not None:
                 self.__parent.gotoPage("Result", (self.__emp,
-                                      self.__desg,
+                                      Designation(self.__desig.designation,
+                                                  self.da_percent.text(),
+                                                  self.hra_percent.text(),
+                                                  self.ta_percent.text(),
+                                                  self.it_percent.text(),
+                                                  self.pt_percent.text()),
                                       self.month.currentText(),
                                       self.year.text()))
 
@@ -89,7 +96,7 @@ class CalculateSalaryWidget(QWidget):
         self.ta_percent.clear()
         self.it_percent.clear()
         self.pt_percent.clear()
-        self.__desg = None
+        self.__desig = None
         self.__emp = None
 
     def loadInfo(self, id):
@@ -102,13 +109,13 @@ class CalculateSalaryWidget(QWidget):
             self.DOJ.setText(self.__emp.getStrDate())
             self.pan.setText(self.__emp.pan)
 
-            self.__desg = Database.getdb().getDesignationInfo(self.__emp.designation)
+            self.__desig = Database.getdb().getDesignationInfo(self.__emp.designation)
 
-            self.da_percent.setText(str(self.__desg.da))
-            self.hra_percent.setText(str(self.__desg.hra))
-            self.ta_percent.setText(str(self.__desg.ta))
-            self.it_percent.setText(str(self.__desg.it))
-            self.pt_percent.setText(str(self.__desg.pt))
+            self.da_percent.setText(str(self.__desig.da))
+            self.hra_percent.setText(str(self.__desig.hra))
+            self.ta_percent.setText(str(self.__desig.ta))
+            self.it_percent.setText(str(self.__desig.it))
+            self.pt_percent.setText(str(self.__desig.pt))
 
     def setIDList(self, name):
         self.id.clear()
