@@ -2,7 +2,7 @@ from PySide.QtGui import QWidget, QApplication, QPushButton, QLabel,\
         QLineEdit, QComboBox, QHBoxLayout, QFormLayout, QVBoxLayout, QMessageBox, QFrame, QFileDialog, QSpinBox, QGroupBox
 from datetime import datetime
 
-from CustomClasses import Designation
+from CustomClasses import Designation, Salary
 from DatabaseManager import Database
 from CustomWidgets import SearchBox, ValueBox
 from ShowMySqlError import ShowMysqlError
@@ -74,15 +74,14 @@ class CalculateSalaryWidget(QWidget):
             QMessageBox(QMessageBox.Information, "Error", "Please select an employee!", parent=self).exec_()
         else:
             if self.__parent is not None:
-                self.__parent.gotoPage("Result", (self.__emp,
-                                      Designation(self.__desig.designation,
+                self.__desig = Designation(self.__desig.designation,
                                                   self.da_percent.text(),
                                                   self.hra_percent.text(),
                                                   self.ta_percent.text(),
                                                   self.it_percent.text(),
-                                                  self.pt_percent.text()),
-                                      self.month.currentText(),
-                                      self.year.text()))
+                                                  self.pt_percent.text())
+                salary = Salary(self.__emp, self.__desig, self.month.currentText(), self.year.text())
+                self.__parent.gotoPage("Result", salary)
 
     def clearInfo(self):
         self.id.setCurrentIndex(-1)

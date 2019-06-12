@@ -22,8 +22,12 @@ class Employee:
         for x in t:
             yield x
 
+    @staticmethod
+    def dateToStr(doj):
+        return "%02d/%02d/%04d" % (doj.day, doj.month, doj.year)
+
     def getStrDate(self):
-        return "%02d/%02d/%04d" % (self.doj.day, self.doj.month, self.doj.year)
+        return Employee.dateToStr(self.doj)
 
     def getQDate(self):
         return QtCore.QDate(self.doj.year, self.doj.month, self.doj.day)

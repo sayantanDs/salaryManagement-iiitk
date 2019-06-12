@@ -56,7 +56,7 @@ class MainWindow(QtGui.QMainWindow):
 
         self.gotoPage("Login")
 
-    def gotoPage(self, name, args=()):
+    def gotoPage(self, name, *args):
         print "Goto page", name, ";   args=", args
         try:
             if len(args) == 0:

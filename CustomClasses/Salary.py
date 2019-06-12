@@ -5,17 +5,19 @@ class Salary:
         if len(args) == 4:
             emp, desig, self.month, self.year = args
             self.year = int(self.year)
-            self.__emp = emp
-            self.id = emp.id
             self.originalPay = emp.originalPay
             self.originalPayGrade = emp.originalPayGrade
             self.designation, self.da_percent, self.hra_percent, self.ta_percent, self.it_percent, self.pt_percent = desig.toTuple()
-            self.date = datetime(self.year, self.monthToNum(self.month), 1)
+            self.date = self.monthYearToDate(self.month, self.year)
         else:
-            self.id, self.date, self.designation, self.originalPay, self.originalPayGrade, \
+            emp, self.date, self.designation, self.originalPay, self.originalPayGrade, \
             self.da_percent, self.hra_percent, self.ta_percent, self.it_percent, self.pt_percent = args
-            self.month = self.numToMonth(self.date.month)
-            self.year = self.date.year
+            self.month, self.year = self.dateToMonthYear(self.date)
+
+        self.id = emp.id
+        self.name = emp.name
+        self.doj = emp.doj
+        self.pan = emp.pan
 
         self.presentPay = self.originalPay + self.originalPayGrade
         self.da = (self.presentPay * self.da_percent) / 100
@@ -29,7 +31,7 @@ class Salary:
         self.netPay = self.grossEarnings - self.grossDeductions
 
     def result(self):
-        return self.__emp.toTuple() + (
+        return (self.id, self.name, self.designation, self.originalPay, self.originalPayGrade, self.doj, self.pan,
                 self.da, self.hra, self.ta, self.it, self.pt, self.presentPay, self.grossEarnings, self.grossDeductions,
                 self.netPay, self.month, self.year)
 
@@ -42,7 +44,16 @@ class Salary:
         for x in t:
             yield x
 
-    def monthToNum(self, month):
+    @staticmethod
+    def monthYearToDate(month, year):
+        return datetime(year, Salary.monthToNum(month), 1)
+
+    @staticmethod
+    def dateToMonthYear(date):
+        return (Salary.numToMonth(date.month), date.year)
+
+    @staticmethod
+    def monthToNum(month):
         m = {"JANUARY"  :   1,
              "FEBRUARY" :   2,
              "MARCH"    :   3,
@@ -57,7 +68,8 @@ class Salary:
              "DECEMBER" :   12}
         return m[month]
 
-    def numToMonth(self, n):
+    @staticmethod
+    def numToMonth(n):
         m = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE",
         "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"]
-        return m[n];
+        return m[n]

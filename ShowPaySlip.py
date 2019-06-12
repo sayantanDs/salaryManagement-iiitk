@@ -1,49 +1,47 @@
+import sys
+
 from PySide import QtGui, QtCore
 from PySide.QtGui import QWidget, QApplication, QPushButton, QLabel,\
         QLineEdit, QComboBox, QHBoxLayout, QFormLayout, QVBoxLayout, QMessageBox, QFrame, QFileDialog, QSpinBox, QGroupBox
 from printPaySlip import printPaySlip
-from CustomClasses import Salary
+from CustomClasses import Salary, Employee
 from DatabaseManager import Database
 import mysql.connector
 from mysql.connector import errorcode
 from ShowMySqlError import ShowMysqlError
 
 class ShowPaySlipWidget(QWidget):
-    def __init__(self,
-                 parent,
-                 emp,
-                 desg,
-                 month, year):
+    def __init__(self, parent, salary):
         QWidget.__init__(self)
         self.title = "Salary Result"
         # self.setGeometry(50, 50, 800, 600)
 
         self.__parent = parent
-        self.salary = Salary(emp, desg, month, year)
+        self.salary = salary
 
-        self.month = str(month)
-        self.year = str(year)
+        self.month = str(self.salary.month)
+        self.year = str(self.salary.year)
         self.id = QLineEdit()
         self.id.setReadOnly(True)
-        self.id.setText(emp.id)
+        self.id.setText(self.salary.id)
         self.name = QLineEdit()
         self.name.setReadOnly(True)
-        self.name.setText(emp.name)
+        self.name.setText(self.salary.name)
         self.designation = QLineEdit()
         self.designation.setReadOnly(True)
-        self.designation.setText(emp.designation)
+        self.designation.setText(self.salary.designation)
         self.originalPay = QLineEdit()
         self.originalPay.setReadOnly(True)
-        self.originalPay.setText(str(emp.originalPay))
+        self.originalPay.setText(str(self.salary.originalPay))
         self.originalPayGrade = QLineEdit()
         self.originalPayGrade.setReadOnly(True)
-        self.originalPayGrade.setText(str(emp.originalPayGrade))
+        self.originalPayGrade.setText(str(self.salary.originalPayGrade))
         self.DOJ = QLineEdit()
         self.DOJ.setReadOnly(True)
-        self.DOJ.setText(emp.getStrDate())
+        self.DOJ.setText(Employee.dateToStr(salary.doj))
         self.pan = QLineEdit()
         self.pan.setReadOnly(True)
-        self.pan.setText(emp.pan)
+        self.pan.setText(self.salary.pan)
 
         self.presentPay = QLineEdit()
         self.presentPay.setReadOnly(True)
