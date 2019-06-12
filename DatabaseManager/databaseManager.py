@@ -1,6 +1,6 @@
 import mysql.connector
 import hashlib
-from CustomClasses import Employee, Designation
+from CustomClasses import Employee, Designation, Salary
 
 class Database:
     __instance = None
@@ -164,3 +164,14 @@ class DatabaseManager:
         delete = "DELETE FROM " + self.salaryTableName + "  WHERE ID=%s AND Date=%s"
         self.mycursor.execute(delete, (salary.id, salary.date))
         self.saveSalary(salary)
+
+    def getSalary(self, id, month, year):
+        command = "SELECT * FROM " + self.salaryTableName + "  WHERE ID=%s AND Date=%s"
+        date = Salary.monthYearToDate(month, year)
+        self.mycursor.execute(command, (id, date))
+        res = self.mycursor.fetchone()
+        id = res[0]
+        emp = self.getEmployeeInfo(id)
+
+        t = (emp,) + res[1:]
+        return Salary(*t)
