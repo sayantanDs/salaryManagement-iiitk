@@ -1,8 +1,4 @@
-from PySide.QtGui import QWidget, QPushButton, QGridLayout, QLabel, QVBoxLayout, QHBoxLayout, QPixmap, QIcon, QGroupBox, QFont
-from PySide.QtCore import Qt, QSize
-
-from PySide.QtGui import QApplication
-import sys
+from PySide import QtGui, QtCore
 
 '''
 Home Page
@@ -10,75 +6,32 @@ Home Page
 This will have Buttons to open all other pages of this application. 
 '''
 
-class HomeWidget(QWidget):
+class HomeWidget(QtGui.QWidget):
     def __init__(self, parent=None):
-        QWidget.__init__(self, parent)
+        QtGui.QWidget.__init__(self, parent)
         self.__parent = parent
         self.title = "Home"
-
-        self.logo = QLabel()
+        self.logo = QtGui.QLabel()
         self.logo.setPixmap("Resources/iiitk.png")
-
-        self.bttnAddEmployee = QPushButton("Add Employee")
-        self.bttnAddEmployee.setIcon(QIcon(QPixmap("Resources/add_user.png")))
-        self.bttnAddEmployee.setIconSize(QSize(64,64))
-        self.bttnAddEmployee.clicked.connect(lambda: self.gotoPage("Add Employee"))
-
-        self.bttnEditEmp = QPushButton("Edit Employee")
-        self.bttnEditEmp.setIcon(QIcon(QPixmap("Resources/edit_user.png")))
-        self.bttnEditEmp.setIconSize(QSize(64, 64))
-        self.bttnEditEmp.clicked.connect(lambda: self.gotoPage("Edit Employee"))
-
-        self.bttnDelEmp = QPushButton("Delete Employee")
-        self.bttnDelEmp.setIcon(QIcon(QPixmap("Resources/delete_user.png")))
-        self.bttnDelEmp.setIconSize(QSize(64, 64))
-        self.bttnDelEmp.clicked.connect(lambda: self.gotoPage("Del Employee"))
-
-        self.bttnShowEmp = QPushButton("Show Employee")
-        self.bttnShowEmp.setIcon(QIcon(QPixmap("Resources/show_user.png")))
-        self.bttnShowEmp.setIconSize(QSize(64, 64))
-        self.bttnShowEmp.clicked.connect(lambda: self.gotoPage("Show Employee"))
-
-
-        self.bttnAddDesignation = QPushButton("Add Designation")
-        self.bttnAddDesignation.setIcon(QIcon(QPixmap("Resources/add_designation.png")))
-        self.bttnAddDesignation.setIconSize(QSize(64, 64))
-        self.bttnAddDesignation.clicked.connect(lambda: self.gotoPage("Add Designation"))
-
-        self.bttnEditDesg = QPushButton("Edit Designation")
-        self.bttnEditDesg.setIcon(QIcon(QPixmap("Resources/edit_designation.png")))
-        self.bttnEditDesg.setIconSize(QSize(64, 64))
-        self.bttnEditDesg.clicked.connect(lambda: self.gotoPage("Edit Designation"))
-
-        self.bttnDelDesg = QPushButton("Delete Designation")
-        self.bttnDelDesg.setIcon(QIcon(QPixmap("Resources/delete_designation.png")))
-        self.bttnDelDesg.setIconSize(QSize(64, 64))
-
-        self.bttnShowDesg = QPushButton("Show Designations")
-        self.bttnShowDesg.setIcon(QIcon(QPixmap("Resources/show_designation.png")))
-        self.bttnShowDesg.setIconSize(QSize(64, 64))
-        self.bttnShowDesg.clicked.connect(lambda: self.gotoPage("Show Designation"))
-
-
-        self.bttnCalcSalary = QPushButton("Generate Payslip")
-        self.bttnCalcSalary.setIcon(QIcon(QPixmap("Resources/rupee.png")))
-        self.bttnCalcSalary.setIconSize(QSize(60, 60))
-        self.bttnCalcSalary.clicked.connect(lambda: self.gotoPage("Calc Salary"))
-
-        self.bttnSettings = QPushButton("Settings")
-        self.bttnSettings.setIcon(QIcon(QPixmap("Resources/icons8-settings-96.png")))
-        self.bttnSettings.setIconSize(QSize(55, 55))
-
+        self.bttnAddEmployee = NavButton("Add Employee", "Resources/add_user.png", "Add Employee", self)
+        self.bttnEditEmp = NavButton("Edit Employee", "Resources/edit_user.png", "Edit Employee", self)
+        self.bttnDelEmp = NavButton("Delete Employee", "Resources/delete_user.png", "Del Employee", self)
+        self.bttnShowEmp = NavButton("Show Employee", "Resources/show_user.png", "Show Employee", self)
+        self.bttnAddDesignation = NavButton("Add Designation", "Resources/add_designation.png", "Add Designation", self)
+        self.bttnEditDesg = NavButton("Edit Designation", "Resources/edit_designation.png", "Edit Designation", self)
+        self.bttnDelDesg = NavButton("Delete Designation", "Resources/delete_designation.png", None, self)
+        self.bttnShowDesg = NavButton("Show Designations", "Resources/show_designation.png", "Show Designation", self)
+        self.bttnCalcSalary = NavButton("Generate Payslip", "Resources/rupee.png", "Calc Salary", self)
+        self.bttnSettings = NavButton("Settings", "Resources/icons8-settings-96.png", None, self)
         self.setupUI()
 
     def gotoPage(self, name):
         if self.__parent is not None:
             self.__parent.gotoPage(name)
 
-
     def setupUI(self):
-        layout = QVBoxLayout()
-        layout.setAlignment(Qt.AlignHCenter)
+        layout = QtGui.QVBoxLayout()
+        layout.setAlignment(QtCore.Qt.AlignHCenter)
 
         self.setContentsMargins(20, 10, 20, 5)
 
@@ -87,30 +40,30 @@ class HomeWidget(QWidget):
                     self.bttnSettings, self.bttnCalcSalary]
         for bttn in bttnList:
             bttn.setObjectName("HomeBttn")
-            bttn.setIconSize(QSize(55,55))
+            bttn.setIconSize(QtCore.QSize(55,55))
 
-        employeeGroup = QGroupBox("Employee")
-        employeeGroupLayout = QVBoxLayout()
+        employeeGroup = QtGui.QGroupBox("Employee")
+        employeeGroupLayout = QtGui.QVBoxLayout()
         employeeGroupLayout.addWidget(self.bttnAddEmployee)
         employeeGroupLayout.addWidget(self.bttnEditEmp)
         employeeGroupLayout.addWidget(self.bttnDelEmp)
         employeeGroupLayout.addWidget(self.bttnShowEmp)
         employeeGroup.setLayout(employeeGroupLayout)
 
-        designationGroup = QGroupBox("Designation")
-        designationGroupLayout = QVBoxLayout()
+        designationGroup = QtGui.QGroupBox("Designation")
+        designationGroupLayout = QtGui.QVBoxLayout()
         designationGroupLayout.addWidget(self.bttnAddDesignation)
         designationGroupLayout.addWidget(self.bttnEditDesg)
         designationGroupLayout.addWidget(self.bttnDelDesg)
         designationGroupLayout.addWidget(self.bttnShowDesg)
         designationGroup.setLayout(designationGroupLayout)
 
-        groups = QHBoxLayout()
+        groups = QtGui.QHBoxLayout()
         groups.addWidget(employeeGroup)
         groups.addWidget(designationGroup)
 
-        otherBttns = QGroupBox()
-        otherBttnsLayout = QVBoxLayout()
+        otherBttns = QtGui.QGroupBox()
+        otherBttnsLayout = QtGui.QVBoxLayout()
         otherBttnsLayout.addWidget(self.bttnCalcSalary)
         otherBttnsLayout.addWidget(self.bttnSettings)
         otherBttnsLayout.addStretch()
@@ -123,17 +76,15 @@ class HomeWidget(QWidget):
 
         layout.addStretch()
 
-        centerLayout = QHBoxLayout()
+        centerLayout = QtGui.QHBoxLayout()
         centerLayout.addStretch()
         centerLayout.addLayout(layout)
         centerLayout.addStretch()
         self.setLayout(centerLayout)
 
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-
-    w = HomeWidget()
-    w.setStyleSheet(open("styleSheet/flatStyleSheet.css","r").read())
-    w.show()
-
-    sys.exit(app.exec_())
+class NavButton(QtGui.QPushButton):
+    def __init__(self, text, img, page, parent):
+        QtGui.QPushButton.__init__(self, text, parent=parent)
+        self.setIcon(QtGui.QIcon(QtGui.QPixmap(img)))
+        if page is not None:
+            self.clicked.connect(lambda: parent.gotoPage(page))
