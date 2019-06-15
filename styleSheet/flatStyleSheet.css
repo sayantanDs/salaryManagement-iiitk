@@ -284,6 +284,12 @@ QToolButton#search
     padding-right: 2px;
     background:transparent;
 }
+ValidatingLineEdit QToolTip
+{
+    border: 1px solid red;
+    background-color: rgb(255, 190, 190);
+    color: rgb(250, 10, 10);
+}
 QCalendarWidget QMenu,
 QComboBox QAbstractItemView
 {
