@@ -4,6 +4,8 @@ from PySide.QtGui import QWidget, QPushButton, QLabel,\
 from DatabaseManager import Database
 from CustomClasses import Designation
 from CustomWidgets import ValidatingLineEdit
+import mysql.connector
+from ShowMySqlError import ShowMysqlError
 
 '''
 Add Designation Page
@@ -52,13 +54,11 @@ class AddDesignationWidget(QWidget):
                                 self.pt.text())
             try:
                 Database.getdb().addDesignation(desg)
-                msg = QMessageBox(QMessageBox.NoIcon, "Success", "Designation added successfully", parent=self)
-                msg.exec_()
+                QMessageBox(QMessageBox.NoIcon, "Success", "Designation added successfully", parent=self).exec_()
                 self.goBack()
 
-            except Exception as e:
-                msg = QMessageBox(QMessageBox.Critical, "Error", str(e), parent=self)
-                msg.exec_()
+            except mysql.connector.Error as e:
+                ShowMysqlError(e, self)
 
     def goBack(self):
         if self.__parent is not None:

@@ -59,11 +59,12 @@ class AddEmployeeWidget(QtGui.QWidget):
                            self.pan.text())
             try:
                 Database.getdb().addEmployee(emp)
+                QtGui.QMessageBox(QtGui.QMessageBox.NoIcon, "Success", "Employee added successfully",
+                                  parent=self).exec_()
+                self.goBack()
             except mysql.connector.Error as e:
                 ShowMysqlError(e, self)
                 return
-
-            QtGui.QMessageBox(QtGui.QMessageBox.NoIcon, "Success", "Employee added successfully", parent=self).exec_()
 
     def goBack(self):
         if self.__parent is not None:
