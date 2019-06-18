@@ -1,6 +1,8 @@
 import mysql.connector
 import hashlib
 from CustomClasses import Employee, Designation, Salary
+from PySide import QtGui, QtCore
+from CustomWidgets import ReconnectMsg
 
 class Database:
     __instance = None
@@ -14,12 +16,29 @@ class Database:
     @staticmethod
     def getdb():
         if Database.__instance is None:
-            raise Exception("Database connection needs to be created first using creatdb()!")
+            raise Exception("Database needs to be connected first using connect()!")
         try:
-            Database.__instance.mydb.ping(reconnect=True, attempts=1, delay=0)
+            # Database.__instance.mydb.ping(reconnect=True, attempts=1, delay=0)
+            Database.__instance.reconnect()
         except mysql.connector.Error as e:
             raise e
         return Database.__instance
+
+
+class Thread(QtCore.QThread):
+    def __init__(self, func):
+        QtCore.QThread.__init__(self)
+        self.__func = func
+        self.__success = True
+
+    def run(self):
+        try:
+            self.__func()
+        except mysql.connector.Error:
+            self.__success = False
+
+    def isSuccess(self):
+        return self.__success
 
 '''
 Class to manage all database access
@@ -31,7 +50,8 @@ class DatabaseManager:
             host=host,
             user=username,
             passwd=password,
-            database=databaseName
+            database=databaseName,
+            connection_timeout=5
         )
 
         self.designationTableName = "designations"
@@ -40,6 +60,25 @@ class DatabaseManager:
         self.salaryTableName = "salary"
 
         self.mycursor = self.mydb.cursor()
+
+        self.__msg = ReconnectMsg()
+
+    def reconnect(self):
+        t = Thread(lambda: self.mydb.ping(reconnect=True, attempts=1, delay=0))
+        t.start()
+        i = 0
+        while t.isRunning() and i < 1000:
+            QtCore.QThread.msleep(5)
+            i += 5
+        if t.isRunning():
+            self.__msg.show()
+            QtCore.QCoreApplication.processEvents()
+            t.wait()
+
+        self.__msg.hide()
+
+        if not t.isSuccess():
+            raise mysql.connector.Error(errno=2003, msg="Can't connect to MySQL server")
 
     def checkLogin(self, username, password):
         # if username == "admin" and password == "1234":
