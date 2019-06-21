@@ -26,6 +26,7 @@ class AddEmployeeWidget(QtGui.QWidget):
         self.originalPayGrade = ValidatingLineEdit("Original Pay Grade", QtGui.QDoubleValidator(), self)
         self.DOJ = DatePicker(self)
         self.pan = ValidatingLineEdit("PAN", "[A-Z]{5}\d{4}[A-Z]", self)
+        self.pan.textEdited.connect(lambda s: self.pan.setText(str(s).upper()))
 
         self.inputs = [self.id, self.name, self.originalPay, self.originalPayGrade, self.pan]
 
