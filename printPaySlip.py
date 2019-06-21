@@ -104,8 +104,8 @@ def printPaySlip(id,
     printer = QtGui.QPrinter()
     printer.setPageSize(QtGui.QPrinter.A4)
     # printer.setPageMargins(0.5, 1, 0.5, 1, QtGui.QPrinter.Inch)
-    paint = printer.paintEngine()
-    paint.drawLines(QtCore.QLine(50,50,100,100), 1)
+    # paint = printer.paintEngine()
+    # paint.drawLines(QtCore.QLine(50,50,100,100), 1)
     # printerDialog = QtGui.QPrintDialog(printer)
 
     document = QtGui.QTextDocument()

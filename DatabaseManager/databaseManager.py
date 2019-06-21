@@ -1,4 +1,6 @@
 import mysql.connector
+import mysql.connector.locales.eng.client_error # imported for proper compilation with PyInstaller
+# for more info: https://stackoverflow.com/questions/23657934/mysql-connector-bug-during-except-when-compiled-with-pyinstaller
 import hashlib
 from CustomClasses import Employee, Designation, Salary
 from PySide import QtGui, QtCore
