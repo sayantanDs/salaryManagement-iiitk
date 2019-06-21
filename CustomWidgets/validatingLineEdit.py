@@ -9,12 +9,10 @@ class ValidatingLineEdit(QtGui.QLineEdit):
         self.__edited = False
 
         if isinstance(regex, QtGui.QValidator):
-            # self.setValidator(regex)
             self.__validator = regex
         else:
             if not isinstance(regex, QtCore.QRegExp):
                 regex = QtCore.QRegExp(regex)
-            # self.setValidator(QtGui.QRegExpValidator(regex))
             self.__validator = QtGui.QRegExpValidator(regex)
 
         self.textChanged.connect(self.__adjustColor)
@@ -64,7 +62,9 @@ class ValidatingLineEdit(QtGui.QLineEdit):
             return "Invalid input for " + self.fieldName
 
     def setText(self, *args, **kwargs):
+        p = self.cursorPosition()
         QtGui.QLineEdit.setText(self, *args, **kwargs)
+        self.setCursorPosition(p)
         self.__toDefaultColor()
 
     def clear(self, *args, **kwargs):
