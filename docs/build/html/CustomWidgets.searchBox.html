@@ -1,0 +1,325 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>CustomWidgets.searchBox module &mdash; Salary Management System  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="CustomWidgets.validatingLineEdit module" href="CustomWidgets.validatingLineEdit.html" />
+    <link rel="prev" title="CustomWidgets.reconnectMsg module" href="CustomWidgets.reconnectMsg.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Salary Management System
+          
+
+          
+            
+            <img src="_static/iiitk.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="CustomClasses.html">CustomClasses package</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="CustomWidgets.html">CustomWidgets package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="CustomWidgets.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="CustomWidgets.datePicker.html">CustomWidgets.datePicker module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CustomWidgets.reconnectMsg.html">CustomWidgets.reconnectMsg module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">CustomWidgets.searchBox module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CustomWidgets.validatingLineEdit.html">CustomWidgets.validatingLineEdit module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CustomWidgets.valueBox.html">CustomWidgets.valueBox module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="DatabaseManager.html">DatabaseManager package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main.html">main module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Header.html">Header module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Home.html">Home module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Login.html">Login module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AddEmployee.html">AddEmployee module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EditEmployee.html">EditEmployee module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DelEmployee.html">DelEmployee module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ShowEmployee.html">ShowEmployee module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AddDesignation.html">AddDesignation module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EditDesignation.html">EditDesignation module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ShowDesignation.html">ShowDesignation module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CalculateSalary.html">CalculateSalary module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ShowPaySlip.html">ShowPaySlip module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="printPaySlip.html">printPaySlip module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ShowMySqlError.html">ShowMySqlError module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Salary Management System</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="CustomWidgets.html">CustomWidgets package</a> &raquo;</li>
+        
+      <li>CustomWidgets.searchBox module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-CustomWidgets.searchBox">
+<span id="customwidgets-searchbox-module"></span><h1>CustomWidgets.searchBox module<a class="headerlink" href="#module-CustomWidgets.searchBox" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="CustomWidgets.searchBox.SearchBox">
+<em class="property">class </em><code class="descname">SearchBox</code><span class="sig-paren">(</span><em>parent=None</em>, <em>suggestionList=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#CustomWidgets.searchBox.SearchBox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PySide.QtGui.QComboBox</span></code></p>
+<p>PySide widget for search box with drop-down suggestions, extends QComboBox</p>
+<p>Creates an input box which shows suggestions based on the list passed in the init function
+Suggestion list can also be set using the setList() method.</p>
+<p>This can only be used when all possible inputs are known and available in a list.
+For example - a SearchBox for taking input for name of an employee working in an organization. In this case
+suggestion list would contain name of all employees. Now if user enters ‘Ra’, all the name beginning with ‘Ra’
+will be shown in suggestion.</p>
+<p>This widget also contains a down arrow button on the right end. Clicking that will show a drop-down of
+all possible inputs and any one could be selected.</p>
+<p>A search button is also available (showing icon of magnifying glass). Clicking this button or pressing Enter key
+will emit returnPressed Signal with the current string in the search box. This signal can then be connected
+to required function.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="nb">print</span> <span class="s2">&quot;searching for&quot;</span><span class="p">,</span> <span class="n">s</span>
+
+<span class="n">suggestion_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;value 1&quot;</span><span class="p">,</span> <span class="s2">&quot;value 2&quot;</span><span class="p">,</span> <span class="s2">&quot;some other value&quot;</span><span class="p">]</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">SearchBox</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">suggestion_list</span><span class="p">)</span>    <span class="c1"># first argument is parent widget</span>
+<span class="n">w</span><span class="o">.</span><span class="n">returnPressed</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="attribute">
+<dt id="CustomWidgets.searchBox.SearchBox.__textChangeStatus">
+<code class="descname">__textChangeStatus</code><a class="headerlink" href="#CustomWidgets.searchBox.SearchBox.__textChangeStatus" title="Permalink to this definition">¶</a></dt>
+<dd><p>maintains record if text is changed since last search (or creation of widget).
+If text is not changed since last search, pressing enter or clicking search again
+will not emit returnPressed Signal. Hence preventing spamming of search.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>parent</strong> (<em>QWidget</em>) – parent widget of the SearchBox
+(default is None)</li>
+<li><strong>suggestionList</strong> (<em>list of strs</em>) – suggestion list to show suggestions from
+(default is [])</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="CustomWidgets.searchBox.SearchBox.resizeEvent">
+<code class="descname">resizeEvent</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#CustomWidgets.searchBox.SearchBox.resizeEvent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="CustomWidgets.searchBox.SearchBox.returnPressed">
+<code class="descname">returnPressed</code><em class="property"> = &lt;PySide.QtCore.Signal object&gt;</em><a class="headerlink" href="#CustomWidgets.searchBox.SearchBox.returnPressed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="CustomWidgets.searchBox.SearchBox.setList">
+<code class="descname">setList</code><span class="sig-paren">(</span><em>suggestionList</em><span class="sig-paren">)</span><a class="headerlink" href="#CustomWidgets.searchBox.SearchBox.setList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the suggestion list to show suggestions from</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>suggestionList</strong> (<em>list of str</em>) – the list of suggestions to be shown</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="CustomWidgets.searchBox.SearchBox.setPlaceholderText">
+<code class="descname">setPlaceholderText</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="headerlink" href="#CustomWidgets.searchBox.SearchBox.setPlaceholderText" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="CustomWidgets.searchBox.SearchBox.text">
+<code class="descname">text</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CustomWidgets.searchBox.SearchBox.text" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="CustomWidgets.validatingLineEdit.html" class="btn btn-neutral float-right" title="CustomWidgets.validatingLineEdit module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="CustomWidgets.reconnectMsg.html" class="btn btn-neutral float-left" title="CustomWidgets.reconnectMsg module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

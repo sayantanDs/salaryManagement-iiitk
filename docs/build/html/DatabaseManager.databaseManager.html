@@ -1,0 +1,693 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>DatabaseManager.databaseManager module &mdash; Salary Management System  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="main module" href="main.html" />
+    <link rel="prev" title="DatabaseManager package" href="DatabaseManager.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Salary Management System
+          
+
+          
+            
+            <img src="_static/iiitk.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="CustomClasses.html">CustomClasses package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CustomWidgets.html">CustomWidgets package</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="DatabaseManager.html">DatabaseManager package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="DatabaseManager.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">DatabaseManager.databaseManager module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="main.html">main module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Header.html">Header module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Home.html">Home module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Login.html">Login module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AddEmployee.html">AddEmployee module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EditEmployee.html">EditEmployee module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DelEmployee.html">DelEmployee module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ShowEmployee.html">ShowEmployee module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AddDesignation.html">AddDesignation module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EditDesignation.html">EditDesignation module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ShowDesignation.html">ShowDesignation module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CalculateSalary.html">CalculateSalary module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ShowPaySlip.html">ShowPaySlip module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="printPaySlip.html">printPaySlip module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ShowMySqlError.html">ShowMySqlError module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Salary Management System</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="DatabaseManager.html">DatabaseManager package</a> &raquo;</li>
+        
+      <li>DatabaseManager.databaseManager module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-DatabaseManager.databaseManager">
+<span id="databasemanager-databasemanager-module"></span><h1>DatabaseManager.databaseManager module<a class="headerlink" href="#module-DatabaseManager.databaseManager" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="DatabaseManager.databaseManager.Database">
+<em class="property">class </em><code class="descname">Database</code><a class="headerlink" href="#DatabaseManager.databaseManager.Database" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class that keeps an instance of DatabaseManager class in a static variable</p>
+<p>A DatabaseManager object connects to MySQL server during creation. Making a new instance of
+DatabaseManager class everytime a database operation is to be done would mean creating new
+connections everytime. This would be slow and redundant. Hence keeping one instance that
+can be used everywhere is better.</p>
+<p>This class stores an instance of DatabaseManager class in a static variable which can be accessed
+using static method Database.getdb(). The connection needs to be created before using getdb for
+the first time using Database.connect() method.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Database</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
+                <span class="n">databaseName</span><span class="o">=</span><span class="s2">&quot;test_db&quot;</span><span class="p">,</span>
+                <span class="n">username</span><span class="o">=</span><span class="s2">&quot;root&quot;</span><span class="p">,</span>
+                <span class="n">password</span><span class="o">=</span><span class="s2">&quot;root&quot;</span><span class="p">)</span>
+
+<span class="n">Database</span><span class="o">.</span><span class="n">getdb</span><span class="p">()</span><span class="o">.</span><span class="n">addEmployee</span><span class="p">(</span><span class="n">emp</span><span class="p">)</span>   <span class="c1"># emp is an Employee object</span>
+</pre></div>
+</div>
+<dl class="staticmethod">
+<dt id="DatabaseManager.databaseManager.Database.connect">
+<em class="property">static </em><code class="descname">connect</code><span class="sig-paren">(</span><em>host</em>, <em>databaseName</em>, <em>username</em>, <em>password=None</em><span class="sig-paren">)</span><a class="headerlink" href="#DatabaseManager.databaseManager.Database.connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates connection to server</p>
+<p>Attempts to connect to given host and database using username and password(if any)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>host</strong> – host name or ip address</li>
+<li><strong>databaseName</strong> – MySQL database name</li>
+<li><strong>username</strong> – username to be used</li>
+<li><strong>password</strong> – password to be used (if any)
+(default is None)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="DatabaseManager.databaseManager.Database.getdb">
+<em class="property">static </em><code class="descname">getdb</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#DatabaseManager.databaseManager.Database.getdb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an instance of DatabaseManager class</p>
+<p>This method first ensures that a connection to server exists. If Database was never connected
+using the connect() method, an Exception is raised. If connection was previously made, it pings the
+server to make sure it is still connected. If ping fails, it attempts to reconnect to server. On failure
+of ping and reconnection, mysql.connector.Error is raised.</p>
+<p>If all steps above goes fine without any problems, the instance of DatabaseManager is returned</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The instance of DatabaseManager stored is returned</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#DatabaseManager.databaseManager.DatabaseManager" title="DatabaseManager.databaseManager.DatabaseManager">DatabaseManager</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="DatabaseManager.databaseManager.DatabaseManager">
+<em class="property">class </em><code class="descname">DatabaseManager</code><span class="sig-paren">(</span><em>host</em>, <em>databaseName</em>, <em>username</em>, <em>password=None</em><span class="sig-paren">)</span><a class="headerlink" href="#DatabaseManager.databaseManager.DatabaseManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to manage all database access</p>
+<p>This class wraps up MySQL commands in python functions so these function can be easily used without worrying
+about the actual MySQL commands.</p>
+<p class="rubric">Example</p>
+<p>To add an employee simply write:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">addEmployee</span><span class="p">(</span><span class="n">emp</span><span class="p">)</span>   <span class="c1"># assuming db is an instance of DatabaseManager</span>
+</pre></div>
+</div>
+<p>The constructor conects to the MySQL database using given parameters</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>host</strong> – host name or ip address</li>
+<li><strong>databaseName</strong> – MySQL database name</li>
+<li><strong>username</strong> – username to be used</li>
+<li><strong>password</strong> – password to be used (if any)
+(default is None)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="DatabaseManager.databaseManager.DatabaseManager.addDesignation">
+<code class="descname">addDesignation</code><span class="sig-paren">(</span><em>desig</em><span class="sig-paren">)</span><a class="headerlink" href="#DatabaseManager.databaseManager.DatabaseManager.addDesignation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a new designation to the database</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>desig</strong> (<a class="reference internal" href="CustomClasses.Designation.html#CustomClasses.Designation.Designation" title="CustomClasses.Designation.Designation"><em>Designation</em></a>) – Designation object representing designation to be added in database</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="DatabaseManager.databaseManager.DatabaseManager.addEmployee">
+<code class="descname">addEmployee</code><span class="sig-paren">(</span><em>emp</em><span class="sig-paren">)</span><a class="headerlink" href="#DatabaseManager.databaseManager.DatabaseManager.addEmployee" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a new employee record to database</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>emp</strong> (<a class="reference internal" href="CustomClasses.Employee.html#CustomClasses.Employee.Employee" title="CustomClasses.Employee.Employee"><em>Employee</em></a>) – Employee object representing the new employee</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="DatabaseManager.databaseManager.DatabaseManager.addLogin">
+<code class="descname">addLogin</code><span class="sig-paren">(</span><em>username</em>, <em>password</em><span class="sig-paren">)</span><a class="headerlink" href="#DatabaseManager.databaseManager.DatabaseManager.addLogin" title="Permalink to this definition">¶</a></dt>
+<dd><p>To register a new admin username password</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>username</strong> (<em>str</em>) – admin username</li>
+<li><strong>password</strong> (<em>str</em>) – admin password</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="DatabaseManager.databaseManager.DatabaseManager.checkLogin">
+<code class="descname">checkLogin</code><span class="sig-paren">(</span><em>username</em>, <em>password</em><span class="sig-paren">)</span><a class="headerlink" href="#DatabaseManager.databaseManager.DatabaseManager.checkLogin" title="Permalink to this definition">¶</a></dt>
+<dd><p>To check if given username password is correct</p>
+<p>Used for admin login.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>username</strong> (<em>str</em>) – admin username</li>
+<li><strong>password</strong> (<em>str</em>) – admin password</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">True if correct, False otherwise</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="DatabaseManager.databaseManager.DatabaseManager.delEmployee">
+<code class="descname">delEmployee</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#DatabaseManager.databaseManager.DatabaseManager.delEmployee" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete existing employee record from database</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>id</strong> (<em>str</em>) – ID of the employee to be deleted</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="DatabaseManager.databaseManager.DatabaseManager.editDesignationInfo">
+<code class="descname">editDesignationInfo</code><span class="sig-paren">(</span><em>desig</em>, <em>origDesignation</em><span class="sig-paren">)</span><a class="headerlink" href="#DatabaseManager.databaseManager.DatabaseManager.editDesignationInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Edit designation details of existing designation in database</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>desig</strong> (<a class="reference internal" href="CustomClasses.Designation.html#CustomClasses.Designation.Designation" title="CustomClasses.Designation.Designation"><em>Designation</em></a>) – Designation object with updated designation info</li>
+<li><strong>origDesignation</strong> – current designation name</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="DatabaseManager.databaseManager.DatabaseManager.editEmployee">
+<code class="descname">editEmployee</code><span class="sig-paren">(</span><em>emp</em><span class="sig-paren">)</span><a class="headerlink" href="#DatabaseManager.databaseManager.DatabaseManager.editEmployee" title="Permalink to this definition">¶</a></dt>
+<dd><p>Edit employee details of an existing employee record</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>emp</strong> (<a class="reference internal" href="CustomClasses.Employee.html#CustomClasses.Employee.Employee" title="CustomClasses.Employee.Employee"><em>Employee</em></a>) – Employee object with updated employee details</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="DatabaseManager.databaseManager.DatabaseManager.getAllDesignationInfo">
+<code class="descname">getAllDesignationInfo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#DatabaseManager.databaseManager.DatabaseManager.getAllDesignationInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get list of all designation details</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">details of all designations</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="DatabaseManager.databaseManager.DatabaseManager.getAllEmployeeInfo">
+<code class="descname">getAllEmployeeInfo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#DatabaseManager.databaseManager.DatabaseManager.getAllEmployeeInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get list of all employee details</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">details of all employees</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="DatabaseManager.databaseManager.DatabaseManager.getDesignationInfo">
+<code class="descname">getDesignationInfo</code><span class="sig-paren">(</span><em>designation</em><span class="sig-paren">)</span><a class="headerlink" href="#DatabaseManager.databaseManager.DatabaseManager.getDesignationInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get designation info for given designation name</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>designation</strong> (<em>str</em>) – Name of the designation who’s information is required</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Designation object representing designation with given name</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="CustomClasses.Designation.html#CustomClasses.Designation.Designation" title="CustomClasses.Designation.Designation">Designation</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="DatabaseManager.databaseManager.DatabaseManager.getDesignations">
+<code class="descname">getDesignations</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#DatabaseManager.databaseManager.DatabaseManager.getDesignations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of all the designation names stored in database</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">list of all designation names in the database</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list of str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="DatabaseManager.databaseManager.DatabaseManager.getEmployeeInfo">
+<code class="descname">getEmployeeInfo</code><span class="sig-paren">(</span><em>id</em><span class="sig-paren">)</span><a class="headerlink" href="#DatabaseManager.databaseManager.DatabaseManager.getEmployeeInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all details about the employee with given ID stored in the database</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>id</strong> (<em>str</em>) – ID for which employee details are required</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">An Employee object with required details</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="CustomClasses.Employee.html#CustomClasses.Employee.Employee" title="CustomClasses.Employee.Employee">Employee</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="DatabaseManager.databaseManager.DatabaseManager.getEmployeeNameList">
+<code class="descname">getEmployeeNameList</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#DatabaseManager.databaseManager.DatabaseManager.getEmployeeNameList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get list of unique names of all employees in database</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A list of all unique employee names in database</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">list of str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="DatabaseManager.databaseManager.DatabaseManager.getIdListForName">
+<code class="descname">getIdListForName</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#DatabaseManager.databaseManager.DatabaseManager.getIdListForName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of IDs of all employees having the given name.</p>
+<p>This method returns IDs of all employees having the given name (may return only one ID if only one such
+employee exists)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>str</em>) – Name of employee(s) who’s ID(s) are required</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A list of IDs of all employees having the given name</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list of str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="DatabaseManager.databaseManager.DatabaseManager.getSalary">
+<code class="descname">getSalary</code><span class="sig-paren">(</span><em>id</em>, <em>month</em>, <em>year</em><span class="sig-paren">)</span><a class="headerlink" href="#DatabaseManager.databaseManager.DatabaseManager.getSalary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get salary record for for given month and year saved for employee with given ID</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>id</strong> (<em>str</em>) – ID of the employee</li>
+<li><strong>month</strong> (<em>str</em>) – month of salary</li>
+<li><strong>year</strong> (<em>int</em>) – year of salary</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">salary object representing the calculated salary for the employee for that month and year</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="CustomClasses.Salary.html#CustomClasses.Salary.Salary" title="CustomClasses.Salary.Salary">Salary</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="DatabaseManager.databaseManager.DatabaseManager.reconnect">
+<code class="descname">reconnect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#DatabaseManager.databaseManager.DatabaseManager.reconnect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to ping the server and reconnect if connection is lost</p>
+<p>This method starts to ping the server in a different thread using the Thread class. If the ping is not
+finished in a few milliseconds, it would probably mean connection was lost and it is trying to reconnect.
+In this case a reconnect message is shown using ReconnectMsg class. After successful reconnction, the
+method ends. If reconnection fails, a mysql.connector.Error is raised</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="DatabaseManager.databaseManager.DatabaseManager.replaceSalary">
+<code class="descname">replaceSalary</code><span class="sig-paren">(</span><em>salary</em><span class="sig-paren">)</span><a class="headerlink" href="#DatabaseManager.databaseManager.DatabaseManager.replaceSalary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replace a record of previously calculated salary</p>
+<p>This may be used if there was a mistake during calculation last time.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>salary</strong> (<a class="reference internal" href="CustomClasses.Salary.html#CustomClasses.Salary.Salary" title="CustomClasses.Salary.Salary"><em>Salary</em></a>) – Salary object representing calculated salary</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="DatabaseManager.databaseManager.DatabaseManager.saveSalary">
+<code class="descname">saveSalary</code><span class="sig-paren">(</span><em>salary</em><span class="sig-paren">)</span><a class="headerlink" href="#DatabaseManager.databaseManager.DatabaseManager.saveSalary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save record of calculated salary</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>salary</strong> (<a class="reference internal" href="CustomClasses.Salary.html#CustomClasses.Salary.Salary" title="CustomClasses.Salary.Salary"><em>Salary</em></a>) – Salary object representing calculated salary</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="DatabaseManager.databaseManager.Thread">
+<em class="property">class </em><code class="descname">Thread</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="headerlink" href="#DatabaseManager.databaseManager.Thread" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PySide.QtCore.QThread</span></code></p>
+<p>Modified QThread to accept a function and run in a separate thread</p>
+<p>The constructor accepts a function which is to be run in a separate thread.
+The function is run inside a try except block, which excepts mysql.connector.Error as this Thread class
+was made only for running mysql ping function in a separate thread.</p>
+<p>Thread contains a ‘success’ flag which is initially set to True. If an exception occurs during run(),
+success is set to False. The isSuccess() method can be used to get the success status.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>func</strong> – The function to be run in a separate thread</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="DatabaseManager.databaseManager.Thread.isSuccess">
+<code class="descname">isSuccess</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#DatabaseManager.databaseManager.Thread.isSuccess" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The success status</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="DatabaseManager.databaseManager.Thread.run">
+<code class="descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#DatabaseManager.databaseManager.Thread.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts execution of the function in a separate thread</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="main.html" class="btn btn-neutral float-right" title="main module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="DatabaseManager.html" class="btn btn-neutral float-left" title="DatabaseManager package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

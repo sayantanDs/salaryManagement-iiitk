@@ -1,0 +1,336 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>CustomWidgets.validatingLineEdit module &mdash; Salary Management System  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="CustomWidgets.valueBox module" href="CustomWidgets.valueBox.html" />
+    <link rel="prev" title="CustomWidgets.searchBox module" href="CustomWidgets.searchBox.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Salary Management System
+          
+
+          
+            
+            <img src="_static/iiitk.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="CustomClasses.html">CustomClasses package</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="CustomWidgets.html">CustomWidgets package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="CustomWidgets.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="CustomWidgets.datePicker.html">CustomWidgets.datePicker module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CustomWidgets.reconnectMsg.html">CustomWidgets.reconnectMsg module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CustomWidgets.searchBox.html">CustomWidgets.searchBox module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">CustomWidgets.validatingLineEdit module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CustomWidgets.valueBox.html">CustomWidgets.valueBox module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="DatabaseManager.html">DatabaseManager package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main.html">main module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Header.html">Header module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Home.html">Home module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Login.html">Login module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AddEmployee.html">AddEmployee module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EditEmployee.html">EditEmployee module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DelEmployee.html">DelEmployee module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ShowEmployee.html">ShowEmployee module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AddDesignation.html">AddDesignation module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EditDesignation.html">EditDesignation module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ShowDesignation.html">ShowDesignation module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CalculateSalary.html">CalculateSalary module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ShowPaySlip.html">ShowPaySlip module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="printPaySlip.html">printPaySlip module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ShowMySqlError.html">ShowMySqlError module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Salary Management System</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="CustomWidgets.html">CustomWidgets package</a> &raquo;</li>
+        
+      <li>CustomWidgets.validatingLineEdit module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-CustomWidgets.validatingLineEdit">
+<span id="customwidgets-validatinglineedit-module"></span><h1>CustomWidgets.validatingLineEdit module<a class="headerlink" href="#module-CustomWidgets.validatingLineEdit" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="CustomWidgets.validatingLineEdit.ValidatingLineEdit">
+<em class="property">class </em><code class="descname">ValidatingLineEdit</code><span class="sig-paren">(</span><em>fieldName</em>, <em>regex</em>, <em>parent=None</em><span class="sig-paren">)</span><a class="headerlink" href="#CustomWidgets.validatingLineEdit.ValidatingLineEdit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">PySide.QtGui.QLineEdit</span></code></p>
+<p>PySide widget to show visual feedback if input is valid/invalid, extends QLineEdit</p>
+<p>A modified QLineEdit which changes to a certain color on getting a valid input and
+another on getting invalid input. This class doesn’t explicitly change colors, it just sets the object name
+to ‘valid’, ‘invalid’ or ‘default’. The required colors are to be mentioned in the stylesheet using
+these object names. See <a class="reference external" href="https://doc.qt.io/archives/qt-4.8/stylesheet-syntax.html">https://doc.qt.io/archives/qt-4.8/stylesheet-syntax.html</a> for more on stylesheets.</p>
+<p>A tooltip is shown on hovering on the widget after giving a wrong input.</p>
+<p>A ‘tick’ or ‘cross’ icon is displayed on the right end of the QLineEdit to clearly indicate valid or invalid input,
+just in case the colors are not properly visible.</p>
+<p class="rubric">Examples</p>
+<p>To create a ValidatingLineEdit for name, that will take only letters from a-z A-Z and space:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nameBox</span> <span class="o">=</span> <span class="n">ValidatingLineEdit</span><span class="p">(</span><span class="s2">&quot;Name&quot;</span><span class="p">,</span> <span class="s2">&quot;[a-zA-Z\s]+&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To create a ValidatingLineEdit for that will take double:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">payBox</span> <span class="o">=</span> <span class="n">ValidatingLineEdit</span><span class="p">(</span><span class="s2">&quot;Pay&quot;</span><span class="p">,</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QDoubleValidator</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>To check if input is valid, use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">nameBox</span><span class="o">.</span><span class="n">isValid</span><span class="p">():</span>
+    <span class="nb">print</span> <span class="s2">&quot;Valid&quot;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="s2">&quot;Invalid!&quot;</span>
+</pre></div>
+</div>
+<dl class="attribute">
+<dt id="CustomWidgets.validatingLineEdit.ValidatingLineEdit.__edited">
+<code class="descname">__edited</code><a class="headerlink" href="#CustomWidgets.validatingLineEdit.ValidatingLineEdit.__edited" title="Permalink to this definition">¶</a></dt>
+<dd><p>To keep track if input has been edited from initial value. The valid/invalid
+checking will only take place if  text is edited.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="CustomWidgets.validatingLineEdit.ValidatingLineEdit.__validator">
+<code class="descname">__validator</code><a class="headerlink" href="#CustomWidgets.validatingLineEdit.ValidatingLineEdit.__validator" title="Permalink to this definition">¶</a></dt>
+<dd><p>validator used to check if input is valid or not</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">QValidator</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>fieldName</strong> (<em>str</em>) – Name of the field for which input is being taken through this QLineEdit. This field name
+might be shown in error messages.</li>
+<li><strong>regex</strong> (<em>str</em><em> or </em><em>QRegExp</em><em> or </em><em>QValidator</em>) – Regex or QValidator used to check if input is valid or not</li>
+<li><strong>parent</strong> (<em>QWidget</em>) – parent widget (optional)
+(default is None)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="CustomWidgets.validatingLineEdit.ValidatingLineEdit.clear">
+<code class="descname">clear</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#CustomWidgets.validatingLineEdit.ValidatingLineEdit.clear" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="CustomWidgets.validatingLineEdit.ValidatingLineEdit.enterEvent">
+<code class="descname">enterEvent</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#CustomWidgets.validatingLineEdit.ValidatingLineEdit.enterEvent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="CustomWidgets.validatingLineEdit.ValidatingLineEdit.getErrorMessage">
+<code class="descname">getErrorMessage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CustomWidgets.validatingLineEdit.ValidatingLineEdit.getErrorMessage" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="CustomWidgets.validatingLineEdit.ValidatingLineEdit.isValid">
+<code class="descname">isValid</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CustomWidgets.validatingLineEdit.ValidatingLineEdit.isValid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="CustomWidgets.validatingLineEdit.ValidatingLineEdit.resizeEvent">
+<code class="descname">resizeEvent</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#CustomWidgets.validatingLineEdit.ValidatingLineEdit.resizeEvent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="CustomWidgets.validatingLineEdit.ValidatingLineEdit.setText">
+<code class="descname">setText</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#CustomWidgets.validatingLineEdit.ValidatingLineEdit.setText" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="CustomWidgets.valueBox.html" class="btn btn-neutral float-right" title="CustomWidgets.valueBox module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="CustomWidgets.searchBox.html" class="btn btn-neutral float-left" title="CustomWidgets.searchBox module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

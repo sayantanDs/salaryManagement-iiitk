@@ -1,0 +1,329 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>CustomClasses.Salary module &mdash; Salary Management System  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="CustomWidgets package" href="CustomWidgets.html" />
+    <link rel="prev" title="CustomClasses.Employee module" href="CustomClasses.Employee.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Salary Management System
+          
+
+          
+            
+            <img src="_static/iiitk.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="CustomClasses.html">CustomClasses package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="CustomClasses.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="CustomClasses.Designation.html">CustomClasses.Designation module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CustomClasses.Employee.html">CustomClasses.Employee module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">CustomClasses.Salary module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="CustomWidgets.html">CustomWidgets package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DatabaseManager.html">DatabaseManager package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main.html">main module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Header.html">Header module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Home.html">Home module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Login.html">Login module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AddEmployee.html">AddEmployee module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EditEmployee.html">EditEmployee module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DelEmployee.html">DelEmployee module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ShowEmployee.html">ShowEmployee module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AddDesignation.html">AddDesignation module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EditDesignation.html">EditDesignation module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ShowDesignation.html">ShowDesignation module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CalculateSalary.html">CalculateSalary module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ShowPaySlip.html">ShowPaySlip module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="printPaySlip.html">printPaySlip module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ShowMySqlError.html">ShowMySqlError module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Salary Management System</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="CustomClasses.html">CustomClasses package</a> &raquo;</li>
+        
+      <li>CustomClasses.Salary module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-CustomClasses.Salary">
+<span id="customclasses-salary-module"></span><h1>CustomClasses.Salary module<a class="headerlink" href="#module-CustomClasses.Salary" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="CustomClasses.Salary.Salary">
+<em class="property">class </em><code class="descname">Salary</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="headerlink" href="#CustomClasses.Salary.Salary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to represent and calculate Salary</p>
+<p>This class takes an Employee object, a Designation object (or all the designation info)
+and calculates the Salary for the given Employee for a given month and year</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>This function can take a variable number of arguments as it uses <code class="docutils literal notranslate"><span class="pre">*args</span></code>.
+The special syntax <code class="docutils literal notranslate"><span class="pre">*args</span></code> in function definitions in python is used to pass
+a variable number of arguments to a function</p>
+<p>More info on variable number of arguments: <a class="reference external" href="https://www.geeksforgeeks.org/args-kwargs-python/">https://www.geeksforgeeks.org/args-kwargs-python/</a></p>
+<p>Hence it is almost like having an overloaded constructor where multiple parameter lists are possible.</p>
+<p>This function supports two formats of arguments,  as listed below.
+The first one is used for calculating salary of an employee and storing it in database.
+Second one is used  to load stored salary from database and make a Salary object</p>
+<dl class="last docutils">
+<dt>Valid argument lists:</dt>
+<dd><ul class="first simple">
+<li>emp: Employee object</li>
+<li>desig: Designation object</li>
+<li>month: month (from 1-12 or name of the month) for which salary is being calculated</li>
+<li>year: year for which salary is being calculated</li>
+</ul>
+<p>OR</p>
+<ul class="last simple">
+<li>emp: Employee object</li>
+<li>date: date containing month and year of salary calculation</li>
+<li>designation: name of designation</li>
+<li>originalPay: original pay</li>
+<li>originalPayGrade: original grade pay</li>
+<li>da: Dearness Allowance percent</li>
+<li>hra: House Rent Allowance percent</li>
+<li>ta: Transport Allowance percent</li>
+<li>it: Income Tax percent</li>
+<li>pt: Profession Tax percent</li>
+</ul>
+</dd>
+</dl>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>*args</strong> – variable length argument list. Arguments should be given in one of the two formats mentioned above.</td>
+</tr>
+</tbody>
+</table>
+<dl class="staticmethod">
+<dt id="CustomClasses.Salary.Salary.dateToMonthYear">
+<em class="property">static </em><code class="descname">dateToMonthYear</code><span class="sig-paren">(</span><em>date</em><span class="sig-paren">)</span><a class="headerlink" href="#CustomClasses.Salary.Salary.dateToMonthYear" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="CustomClasses.Salary.Salary.monthToNum">
+<em class="property">static </em><code class="descname">monthToNum</code><span class="sig-paren">(</span><em>month</em><span class="sig-paren">)</span><a class="headerlink" href="#CustomClasses.Salary.Salary.monthToNum" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="CustomClasses.Salary.Salary.monthYearToDate">
+<em class="property">static </em><code class="descname">monthYearToDate</code><span class="sig-paren">(</span><em>month</em>, <em>year</em><span class="sig-paren">)</span><a class="headerlink" href="#CustomClasses.Salary.Salary.monthYearToDate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="CustomClasses.Salary.Salary.numToMonth">
+<em class="property">static </em><code class="descname">numToMonth</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#CustomClasses.Salary.Salary.numToMonth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="CustomClasses.Salary.Salary.result">
+<code class="descname">result</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CustomClasses.Salary.Salary.result" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to get salary info in format required by GUI</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The Salary info in a tuple arranged in the order required by the GUI</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="CustomClasses.Salary.Salary.toTuple">
+<code class="descname">toTuple</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CustomClasses.Salary.Salary.toTuple" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to get salary info in format required by DatabaseManager</p>
+<p>Unless DatabaseManager does some extra manipulations, this the order in which data is stored in the database</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The Salary info in a tuple arranged in the order required by the DatabaseManager</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="CustomWidgets.html" class="btn btn-neutral float-right" title="CustomWidgets package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="CustomClasses.Employee.html" class="btn btn-neutral float-left" title="CustomClasses.Employee module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
