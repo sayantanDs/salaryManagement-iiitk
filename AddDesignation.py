@@ -14,6 +14,21 @@ We can add new designations to the database from this page
 '''
 
 class AddDesignationWidget(QWidget):
+    """PySide widget that contains GUI for adding a new designation to the database
+
+    It has input boxes in a form layout where one can enter info about designation. These input boxes are created
+    using ValidatingLineEdit module.
+    A submit button (QPushButton) is present at the bottom. Clicking submit checks if all inputs are valid.
+    If all inputs are valid, it proceeds to add the new designation record to Database by passing the info
+    to addDesignation function of DatabaseManager.
+    If any of the inputs are invalid, error message is shown for the first invalid input.
+
+    See Also:
+        - :py:mod:`ValidatingLineEdit <CustomWidgets.validatingLineEdit.ValidatingLineEdit>` widget from CustomWidgets
+        - :py:mod:`Designation <CustomClasses.Designation.Designation>` class from CustomClasses
+        - :py:meth:`addDesignation() <DatabaseManager.databaseManager.DatabaseManager.addDesignation>` method of DatabaseManager
+
+    """
     def __init__(self, parent=None):
         QWidget.__init__(self, parent)
         self.__parent = parent
@@ -26,6 +41,8 @@ class AddDesignationWidget(QWidget):
         self.it = ValidatingLineEdit("Income Tax", QDoubleValidator(), self)
         self.pt = ValidatingLineEdit("Professional Tax", QDoubleValidator(), self)
 
+        # inputs whos validity needs to checked are put in a list
+        # so that we can loop through them to check validity
         self.inputs = [self.designation, self.da, self.hra, self.ta, self.it, self.pt]
 
         self.bttnAddDesignation = QPushButton("Add Designation")
@@ -38,6 +55,13 @@ class AddDesignationWidget(QWidget):
         self.setupUI()
 
     def add(self):
+        """This method is automatically called on clicking 'Add Designation' button
+
+        This first checks if all inputs are valid. If any of the inputs are invalid, error message
+        is shown for the first invalid input, else a new Designation object is created from available info.
+        This Employee object is then passed to addEmployee() function of DatabaseManager which adds
+        a new designation record in the database.
+        """
         valid = True
 
         for i in range(len(self.inputs)):
@@ -65,6 +89,7 @@ class AddDesignationWidget(QWidget):
             self.__parent.goBack()
 
     def setupUI(self):
+        """Arranges GUI elements inside the widget properly"""
 
         layout = QVBoxLayout()
         layout.setContentsMargins(20, 20, 20, 10)

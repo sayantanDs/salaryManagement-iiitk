@@ -1,12 +1,14 @@
 from PySide import QtGui, QtCore
 
-'''
-Home Page
-----------
-This will have Buttons to open all other pages of this application. 
-'''
+
 
 class HomeWidget(QtGui.QWidget):
+    """PySide widget for home page
+
+    This will have Buttons to open all other pages of this application. All thesse buttons are supposed to have
+    an icon, a text, and call ``gotoPage()`` method with correct page name when clicked. To make this repetitive task
+    simpler a modified ``QPushButton`` called ``NavButton`` was made.
+    """
     def __init__(self, parent=None):
         QtGui.QWidget.__init__(self, parent)
         self.__parent = parent
@@ -26,6 +28,25 @@ class HomeWidget(QtGui.QWidget):
         self.setupUI()
 
     def gotoPage(self, name):
+        """Goes to the specified page
+
+        Args:
+            name (str): Name of the page
+
+        Note:
+            The pages (or views, which are essentially ``QWidgets``) are initialized in ``MainWindow`` class of
+            ``main`` module. They are put in a dictionary with corresponding page names. The ``MainWindow`` class has
+            the actual ``gotoPage()`` method to jump from one page to other. The ``gotoPage()`` in Home widget
+            just calls that ``gotoPage()`` method from ``MainWindow`` class.
+
+            (As all pages are intialized in ``MainWindow`` class, including Home, so they all have ``MainWindow`` class
+            as their parent. This parent instance is passed in the constructor and stored in __parent attribute.
+            Hence now we can use ``self.__parent.gotoPage()`` to access ``gotoPage()`` from ``MainWindow`` class.)
+
+        See Also:
+            - :py:meth:`gotoPage() <main.MainWindow.gotoPage>` method from :py:mod:`main` module
+
+        """
         if self.__parent is not None:
             self.__parent.gotoPage(name)
 
@@ -84,6 +105,14 @@ class HomeWidget(QtGui.QWidget):
 
 class NavButton(QtGui.QPushButton):
     def __init__(self, text, img, page, parent):
+        """Makes a ``QPushButton`` with given image, text and connects ``gotoPage()`` method with given page name
+
+        Args:
+            text (str): Text shown on the button
+            img  (str): Path to image file
+            page (str): Name of page which needs to opened on clicking this button
+            parent (QWidget): Widget where this is placed
+        """
         QtGui.QPushButton.__init__(self, text, parent=parent)
         self.setIcon(QtGui.QIcon(QtGui.QPixmap(img)))
         if page is not None:

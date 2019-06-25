@@ -8,6 +8,35 @@ from CustomWidgets import SearchBox, ValueBox
 from ShowMySqlError import ShowMysqlError
 
 class CalculateSalaryWidget(QWidget):
+    """A PySide widget which provides GUI for selecting employee and calculating salary for a month & year
+
+    Tis contains boxes for month and year input. Enter the month and year of salary to be calculated here. This is
+    initially automatically set to present month and year.
+
+    Also contains a ``SearchBox`` for selecting name of employee who's salary needs to be calculated. Selecting the name
+    automatically loads IDs of all employees with that name (in case multiple employees have exact same name) in
+    a dropdown box (``QComboBox``). After selecting the required ID from there, the employee info
+    is automatically loaded.
+
+    The allowances and deductions are loaded in ``ValueBoxes`` and hence may be edited if required.
+
+    After selecting everything, user needs to click 'calculate' button. This creates a ``Salary`` object from
+    available info. The actual salary calculation takes place inside ``Salary`` class. This salary object is then
+    passed to ``ShowPaySlipWidget`` which shows the final result and has option to confirm the calculation and print
+    the payslip.
+
+    Note:
+        To automatically call functions on GUI interaction such as button click, PySide Signal and Slots are used.
+        visit http://zetcode.com/gui/pysidetutorial/eventsandsignals/ for more on PySide Signal and Slots.
+
+    See Also:
+        - :py:mod:`SearchBox <CustomWidgets.searchBox.SearchBox>` widget from CustomWidgets
+        - :py:mod:`ValueBox <CustomWidgets.valueBox.ValueBox>` widget from CustomWidgets
+        - :py:mod:`Salary <CustomClasses.Salary.Salary>` class from CustomClasses
+        - :py:mod:`ShowPaySlipWidget <ShowPaySlip.ShowPaySlipWidget>`
+
+    """
+
     def __init__(self, parent=None):
         QWidget.__init__(self, parent)
         self.__parent = parent
@@ -29,7 +58,6 @@ class CalculateSalaryWidget(QWidget):
         self.name.setPlaceholderText("Enter Name")
 
         self.nameList = []
-        # self.nameList = DatabaseManager.db.getEmployeeNameList()
         self.nameList = Database.getdb().getEmployeeNameList()
         self.name.setList(self.nameList)
 
@@ -70,6 +98,8 @@ class CalculateSalaryWidget(QWidget):
 
 
     def calculate(self):
+        """Automatically called on clicking calculate button"""
+
         if self.__emp is None:
             QMessageBox(QMessageBox.Information, "Error", "Please select an employee!", parent=self).exec_()
         else:
@@ -84,6 +114,8 @@ class CalculateSalaryWidget(QWidget):
                 self.__parent.gotoPage("Result", salary)
 
     def clearInfo(self):
+        """Clears the contents of all input/display boxes"""
+
         self.id.setCurrentIndex(-1)
         self.designation.clear()
         self.originalPay.clear()
@@ -99,6 +131,11 @@ class CalculateSalaryWidget(QWidget):
         self.__emp = None
 
     def loadInfo(self, id):
+        """Loads info for given ID in the GUI boxes. This automatically called on selecting an ID from GUI
+
+        Args:
+            id (str): ID of employee who's info needs to be loaded
+        """
         print "id =", id, "...", len(id)
         if id != '':
             self.__emp = Database.getdb().getEmployeeInfo(id)
@@ -117,6 +154,14 @@ class CalculateSalaryWidget(QWidget):
             self.pt_percent.setText(str(self.__desig.pt))
 
     def setIDList(self, name):
+        """Loads IDs of all employees with given name into the ID dropdown box
+
+        This function is automatically called after selecting a name from the GUI
+
+        Args:
+            name (str): Name of employee
+        """
+
         self.id.clear()
         self.id.addItems(Database.getdb().getIdListForName(name))
 
@@ -125,6 +170,7 @@ class CalculateSalaryWidget(QWidget):
             self.__parent.goBack()
 
     def setupUI(self):
+        """Arranges GUI elements inside the widget properly"""
 
         paneLayout = QHBoxLayout()
         paneLayout.setContentsMargins(0, 0, 0, 0)

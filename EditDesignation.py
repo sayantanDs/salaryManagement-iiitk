@@ -1,4 +1,4 @@
-from PySide import QtGui, QtCore
+from PySide import QtGui
 from DatabaseManager import Database
 import mysql.connector
 from ShowMySqlError import ShowMysqlError
@@ -7,6 +7,25 @@ from CustomClasses import Designation
 
 
 class EditDesignationWidget(QtGui.QWidget):
+    """PySide widget that contains GUI for editing an existing designation from the database
+
+    This contains a dropdown box (``QComboBox``) for selecting name of designation that needs to be edited.
+    After selecting the required designation name from there, the designation info is automatically loaded into
+    some input boxes on screen.  These input boxes are created using ``ValidatingLineEdit`` module.
+    User may make necessary changes in these boxes. These boxes will also give a feedback that is the edited
+    input valid or not (as they are created using ``ValidatingLineEdit``)
+
+    A 'Save' button (``QPushButton``) is present at the bottom. Clicking 'Save' checks if all inputs are valid.
+    If any of the inputs are invalid, error message is shown for the first invalid input.
+    If all inputs are valid, a ``Designation`` object is created from edited info and passed to
+    ``editDesignationInfo()`` method of DatabaseManager module to update the designation record
+    in Database.
+
+    See Also:
+        - :py:mod:`ValidatingLineEdit <CustomWidgets.validatingLineEdit.ValidatingLineEdit>` widget from CustomWidgets
+        - :py:mod:`Designation <CustomClasses.Designation.Designation>` class from CustomClasses
+        - :py:meth:`editDesignationInfo() <DatabaseManager.databaseManager.DatabaseManager.editDesignationInfo>` method of DatabaseManager
+    """
     def __init__(self, parent=None):
         QtGui.QWidget.__init__(self, parent)
         self.__parent = parent

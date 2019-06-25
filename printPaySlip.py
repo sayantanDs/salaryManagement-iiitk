@@ -12,6 +12,7 @@ def printPaySlip(id,
                 presentPay, totalEarnings, totalDeductions,
                 netPay,
                 month, year):
+    """Arranges the given info properly and generates the payslip"""
 
     htmlText = \
         '''

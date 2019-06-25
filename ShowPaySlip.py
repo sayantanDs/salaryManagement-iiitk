@@ -11,6 +11,7 @@ from mysql.connector import errorcode
 from ShowMySqlError import ShowMysqlError
 
 class ShowPaySlipWidget(QWidget):
+    """Shows the calculated salary for confirmation"""
     def __init__(self, parent, salary):
         QWidget.__init__(self)
         self.title = "Salary Result"

@@ -3,6 +3,7 @@ from mysql.connector import errorcode
 
 
 def ShowMysqlError(e, parent=None):
+    """Shows user friendly text for mysql connector errors"""
     m = str(e)
     if e.errno == errorcode.CR_CONN_HOST_ERROR:
         m = "Unable to connect server! Please check your connection!"

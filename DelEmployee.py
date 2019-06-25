@@ -4,6 +4,21 @@ from CustomWidgets import SearchBox
 
 
 class DelEmployeeWidget(QtGui.QWidget):
+    """PySide widget that contains GUI for deleting existing employee from the database
+
+    Contains a ``SearchBox`` for selecting name of employee to be deleted. Selecting the name
+    automatically loads IDs of all employees with that name (in case multiple employees have exact same name) in
+    a dropdown box (``QComboBox``). After selecting the required ID from there, the employee info
+    is automatically loaded.
+
+    Clicking on 'Remove Employee' button prompts the user with a confirmation box. Clicking yes leads to deletion
+    of the employee record of from the database. This is done using the ``delEmployee()`` function from DatabaseManager.
+
+    See Also:
+        - :py:mod:`SearchBox <CustomWidgets.searchBox.SearchBox>` widget from CustomWidgets
+        - :py:meth:`delEmployee() <DatabaseManager.databaseManager.DatabaseManager.delEmployee>` method of DatabaseManager
+
+    """
     def __init__(self, parent=None):
         super(DelEmployeeWidget, self).__init__(parent)
         self.__parent = parent
@@ -36,11 +51,18 @@ class DelEmployeeWidget(QtGui.QWidget):
 
         self.setupUI()
 
-    def loadNameList(self):
-        self.name = SearchBox(self, Database.getdb().getEmployeeNameList())
+    # def loadNameList(self):
+    #     self.name = SearchBox(self, Database.getdb().getEmployeeNameList())
 
 
     def setIdList(self, name):
+        """Loads IDs of all employees with given name into the ID dropdown box
+
+        This function is automatically called after selecting a name from the GUI
+
+        Args:
+            name (str): Name of employee
+        """
         self.id.clear()
         self.id.addItems(Database.getdb().getIdListForName(name))
 
@@ -49,6 +71,11 @@ class DelEmployeeWidget(QtGui.QWidget):
             self.__parent.goBack()
 
     def updateInformation(self, id):
+        """Loads info for given ID in the GUI boxes. This automatically called on selecting an ID from GUI
+
+        Args:
+            id (str): ID of employee who's info needs to be loaded
+        """
 
         emp = Database.getdb().getEmployeeInfo(id)
         if emp is None:
@@ -61,6 +88,7 @@ class DelEmployeeWidget(QtGui.QWidget):
             self.panNo.setText(emp.pan)
 
     def setupUI(self):
+        """Arranges GUI elements inside the widget properly"""
 
         paneLayout = QtGui.QHBoxLayout()
         paneLayout.setContentsMargins(0, 0, 0, 0)
@@ -114,6 +142,7 @@ class DelEmployeeWidget(QtGui.QWidget):
         self.setLayout(paneLayout)
 
     def removeEmployee(self):
+        """Automatically called on clicking 'Remove Employee' button"""
 
         if str(self.id.currentText()) == "":
             msg = QtGui.QMessageBox(QtGui.QMessageBox.Information, "Error!!!", "First enter all the information", parent=self)

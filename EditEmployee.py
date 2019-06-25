@@ -1,7 +1,6 @@
 from PySide import QtGui, QtCore
 from PySide.QtGui import QWidget, QLineEdit, QRegExpValidator, QComboBox, QPushButton, QLabel,\
     QHBoxLayout, QFormLayout, QVBoxLayout, QMessageBox, QDoubleValidator, QGroupBox, QFrame
-from PySide.QtCore import QRegExp, QDate
 
 from CustomClasses import Employee
 from CustomWidgets import DatePicker, SearchBox, ValidatingLineEdit
@@ -10,7 +9,32 @@ from DatabaseManager import Database
 import mysql.connector
 from ShowMySqlError import ShowMysqlError
 
+
 class EditEmployeeWidget(QWidget):
+    """PySide widget that contains GUI for editing existing employee record from the database
+
+    This contains a ``SearchBox`` for selecting name of employee who's record needs to be edited. Selecting the name
+    automatically loads IDs of all employees with that name (in case multiple employees have exact same name) in
+    a dropdown box (``QComboBox``). After selecting the required ID from there, the employee info
+    is automatically loaded into some input boxes on screen.
+    These input boxes are created using ``ValidatingLineEdit`` module.
+    User may make necessary changes in these boxes. These boxes will also give a feedback that is the edited
+    input valid or not (as they are created using ``ValidatingLineEdit``)
+
+    A 'Save' button (``QPushButton``) is present at the bottom. Clicking it checks if all inputs are valid.
+    If any of the inputs are invalid, error message is shown for the first invalid input.
+    Otherwise, an ``Employee`` object is created from the edited info and passed to
+    ``editEmployee()`` method of DatabaseManager module to update the employee record
+    in Database.
+
+
+    See Also:
+        - :py:mod:`SearchBox <CustomWidgets.searchBox.SearchBox>` widget from CustomWidgets
+        - :py:mod:`ValidatingLineEdit <CustomWidgets.validatingLineEdit.ValidatingLineEdit>` class from CustomWidgets
+        - :py:mod:`Employee <CustomClasses.Employee.Employee>` class from CustomClasses
+        - :py:meth:`editEmployee() <DatabaseManager.databaseManager.DatabaseManager.editEmployee>` method of DatabaseManager
+
+    """
     def __init__(self, parent=None):
         QWidget.__init__(self, parent)
         self.__parent = parent
@@ -20,7 +44,6 @@ class EditEmployeeWidget(QWidget):
         self.nameSearch = SearchBox(self)
         self.nameSearch.setPlaceholderText("Enter Name")
 
-        # self.name.currentIndexChanged.connect(self.setIDList)
         self.nameList = []
         self.nameList = Database.getdb().getEmployeeNameList()
         self.nameSearch.setList(self.nameList)
@@ -104,17 +127,6 @@ class EditEmployeeWidget(QWidget):
         self.pan.clear()
 
         self.setInputReadOnly(True)
-        # self.nameEdit.setReadOnly(True)
-        # self.originalPay.setReadOnly(True)
-        # self.originalPayGrade.setReadOnly(True)
-        # self.DOJ.setReadOnly(True)
-        # self.pan.setReadOnly(True)
-        # # reload stylesheet to refelect changes of readonly
-        # self.nameEdit.setStyle(self.style())
-        # self.originalPay.setStyle(self.style())
-        # self.originalPayGrade.setStyle(self.style())
-        # self.DOJ.setStyle(self.style())
-        # self.pan.setStyle(self.style())
 
     def setIDList(self, name):
         self.id.clear()
@@ -132,17 +144,6 @@ class EditEmployeeWidget(QWidget):
             self.pan.setText(emp.pan)
 
             self.setInputReadOnly(False)
-            # self.nameEdit.setReadOnly(False)
-            # self.originalPay.setReadOnly(False)
-            # self.originalPayGrade.setReadOnly(False)
-            # self.DOJ.setReadOnly(False)
-            # self.pan.setReadOnly(False)
-            # # reload stylesheet to refelect changes of readonly
-            # self.nameEdit.setStyle(self.style())
-            # self.originalPay.setStyle(self.style())
-            # self.originalPayGrade.setStyle(self.style())
-            # self.DOJ.setStyle(self.style())
-            # self.pan.setStyle(self.style())
 
     def goBack(self):
         if self.__parent is not None:

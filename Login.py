@@ -1,11 +1,23 @@
 from PySide import QtGui
-from PySide.QtCore import Qt, QRegExp
+from PySide.QtCore import QRegExp
 import sys
 import mysql.connector
 from ShowMySqlError import ShowMysqlError
 from DatabaseManager import Database
 
 class LoginWidget(QtGui.QDialog):
+    """A PySide widget that has GUI for performing Login
+
+    This has two ``QLineEdit`` widgets. One for username and another for password. The password text is not shown
+    by default. Checking the show password checkbox, shows the password text.
+    On clicking 'Login' button, the given username and password are sent to the ``checkLogin`` method from
+    DatabaseManager module. If this returns True, this widget opens the Home page, otherwise, a Dialog box
+    is shown saying the given username or password was wrong.
+
+    See Also:
+        - :py:meth:`checkLogin() <DatabaseManager.databaseManager.DatabaseManager.checkLogin>` method from DatabaseManager module
+
+    """
     def __init__(self, parent=None):
         super(LoginWidget, self).__init__(parent)
 

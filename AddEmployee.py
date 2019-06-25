@@ -1,4 +1,4 @@
-from PySide import QtGui, QtCore
+from PySide import QtGui
 from CustomWidgets import DatePicker
 from DatabaseManager import Database
 import mysql.connector
@@ -7,12 +7,22 @@ from CustomWidgets import ValidatingLineEdit
 from CustomClasses import Employee
 
 
-'''
-Add Employee Page
--------------------
-We can add new employees to the database from this page
-'''
 class AddEmployeeWidget(QtGui.QWidget):
+    """PySide widget that contains GUI for adding a new employee to the database
+
+        It has input boxes in a form layout where one can enter info about employee. These input boxes are created
+        using ValidatingLineEdit.
+        A 'Add Employee' button (``QPushButton``) is present at the bottom. Clicking it checks if all inputs are valid.
+        If all inputs are valid, it proceeds to add the new employee record to Database by passing the info
+        to addEmployee function of DatabaseManager.
+        If any of the inputs are invalid, error message is shown for the first invalid input.
+
+        See Also:
+            - :py:mod:`ValidatingLineEdit <CustomWidgets.validatingLineEdit.ValidatingLineEdit>` class from CustomWidgets
+            - :py:mod:`Employee <CustomClasses.Employee.Employee>` class from CustomClasses
+            - :py:meth:`addEmployee() <DatabaseManager.databaseManager.DatabaseManager.addEmployee>` method of DatabaseManager
+
+    """
     def __init__(self, parent=None):
         QtGui.QWidget.__init__(self, parent)
         self.__parent = parent
@@ -28,6 +38,8 @@ class AddEmployeeWidget(QtGui.QWidget):
         self.pan = ValidatingLineEdit("PAN", "[A-Z]{5}\d{4}[A-Z]", self)
         self.pan.textEdited.connect(lambda s: self.pan.setText(str(s).upper()))
 
+        # inputs whos validity needs to checked are put in a list
+        # so that we can loop through them to check validity
         self.inputs = [self.id, self.name, self.originalPay, self.originalPayGrade, self.pan]
 
         self.bttnAddEmployee = QtGui.QPushButton("Add Employee")
@@ -37,11 +49,17 @@ class AddEmployeeWidget(QtGui.QWidget):
         self.bttnCancel.clicked.connect(self.goBack)
         self.bttnAddEmployee.clicked.connect(self.add)
 
-        # self.designation.addItems(Database.getdb().getDesignations())
-
-        self.setupUI()
+        self.__setupUI()
 
     def add(self):
+        """This method is automatically called on clicking 'Add Employee' button
+
+        This first checks if all inputs are valid. If any of the inputs are invalid, error message
+        is shown for the first invalid input, else a new Employee object is created from available info.
+        This Employee object is then passed to addEmployee() function of DatabaseManager which adds
+        a new employee record in the database.
+        """
+
         valid = True
         for i in range(len(self.inputs)):
             if not self.inputs[i].isValid():
@@ -71,7 +89,10 @@ class AddEmployeeWidget(QtGui.QWidget):
         if self.__parent is not None:
             self.__parent.goBack()
 
+
     def setupUI(self):
+        """Arranges GUI elements inside the widget properly"""
+
         layout = QtGui.QVBoxLayout()
         layout.setContentsMargins(20, 20, 20, 10)
         form = QtGui.QFormLayout()

@@ -4,6 +4,15 @@ from PySide.QtCore import Qt
 
 
 class ShowDesigationWidget(QtGui.QWidget):
+    """PySide widget that shows all the designation informations in a tabular form
+
+        QTableWidget is used to show the info in a table. The ``getAllDesignationInfo()`` method from DatabaseManager is
+        used to get all the information as a list which is then arranged in the QTableWidget.
+
+        See Also:
+            - :py:meth:`getAllDesignationInfo() <DatabaseManager.databaseManager.DatabaseManager.getAllDesignationInfo>` method of DatabaseManager
+
+        """
     def __init__(self, parent=None):
         QtGui.QWidget.__init__(self, parent)
         self.__parent = parent
@@ -19,10 +28,10 @@ class ShowDesigationWidget(QtGui.QWidget):
         self.bttnBack.clicked.connect(self.goBack)
         self.bttnBack.setObjectName("CancelButton")
 
-
         self.setupUI()
 
     def loadTable(self):
+        """Loads all the info in the QTableWidget"""
 
         info = Database.getdb().getAllDesignationInfo()
         self.table.setRowCount(len(info))
