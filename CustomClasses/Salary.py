@@ -98,8 +98,8 @@ class Salary:
             The Salary info in a tuple arranged in the order required by the DatabaseManager
 
         """
-
-        return (self.id, self.date, self.designation, self.originalPay, self.originalPayGrade,
+        date_id = "%s,%02d/%04d" % (self.id, self.date.month, self.date.year)
+        return (date_id, self.id, self.date, self.designation, self.originalPay, self.originalPayGrade,
                 self.da_percent, self.hra_percent, self.ta_percent, self.it_percent, self.pt_percent)
 
     def __iter__(self):

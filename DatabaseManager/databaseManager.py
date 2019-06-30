@@ -425,7 +425,7 @@ class DatabaseManager:
             None
 
         """
-        insert = "INSERT INTO " + self.salaryTableName + "  VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+        insert = "INSERT INTO " + self.salaryTableName + "  VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
         self.mycursor.execute(insert, salary.toTuple())
         self.mydb.commit()
 
@@ -461,8 +461,8 @@ class DatabaseManager:
         date = Salary.monthYearToDate(month, year)
         self.mycursor.execute(command, (id, date))
         res = self.mycursor.fetchone()
-        id = res[0]
+        id = res[1]
         emp = self.getEmployeeInfo(id)
 
-        t = (emp,) + res[1:]
+        t = (emp,) + res[2:]
         return Salary(*t)
