@@ -194,9 +194,9 @@ if __name__ == "__main__":
         #                  password="root")
 
         Database.connect(host="remotemysql.com",
-                         username="41Ng5H2E1B",
-                         password="nGQNpBrowE",
-                         databaseName="41Ng5H2E1B")
+                         username="ll703lm6tX",
+                         password="EPo1gXlLUT",
+                         databaseName="ll703lm6tX")
 
         w = MainWindow()
 
