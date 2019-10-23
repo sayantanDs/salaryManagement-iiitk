@@ -49,7 +49,7 @@ class AddEmployeeWidget(QtGui.QWidget):
         self.bttnCancel.clicked.connect(self.goBack)
         self.bttnAddEmployee.clicked.connect(self.add)
 
-        self.__setupUI()
+        self.setupUI()
 
     def add(self):
         """This method is automatically called on clicking 'Add Employee' button
