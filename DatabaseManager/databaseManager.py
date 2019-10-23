@@ -387,6 +387,29 @@ class DatabaseManager:
         self.mycursor.execute(insert, desig.toTuple())
         self.mydb.commit()
 
+    def employeeWithDesigExists(self, designation):
+        command = "SELECT COUNT(id) FROM " + self.employeeTableName + " WHERE designation = %s"
+        self.mycursor.execute(command, (designation,))
+        k = self.mycursor.fetchone()[0]
+        print "::::",k
+        if int(k) > 0:
+            return True
+        return False
+
+    def delDesignation(self, designation):
+        """Delete existing designation record from database
+
+        Args:
+            designation (str): Name of the designation to be deleted
+
+        Returns:
+            None
+        """
+
+        command = "DELETE FROM " + self.designationTableName + " WHERE designation = %s"
+        self.mycursor.execute(command, (designation,))
+        self.mydb.commit()
+
     def getDesignationInfo(self, designation):
         """Get designation info for given designation name
 

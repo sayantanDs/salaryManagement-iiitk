@@ -21,7 +21,7 @@ class HomeWidget(QtGui.QWidget):
         self.bttnShowEmp = NavButton("Show Employee", "Resources/show_user.png", "Show Employee", self)
         self.bttnAddDesignation = NavButton("Add Designation", "Resources/add_designation.png", "Add Designation", self)
         self.bttnEditDesg = NavButton("Edit Designation", "Resources/edit_designation.png", "Edit Designation", self)
-        self.bttnDelDesg = NavButton("Delete Designation", "Resources/delete_designation.png", None, self)
+        self.bttnDelDesg = NavButton("Delete Designation", "Resources/delete_designation.png", "Del Designation", self)
         self.bttnShowDesg = NavButton("Show Designations", "Resources/show_designation.png", "Show Designation", self)
         self.bttnCalcSalary = NavButton("Generate Payslip", "Resources/rupee.png", "Calc Salary", self)
         self.bttnSettings = NavButton("Change Password", "Resources/icons8-settings-96.png", "Change Password", self)

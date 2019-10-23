@@ -41,6 +41,8 @@ class DelEmployeeWidget(QtGui.QWidget):
         self.panNo = QtGui.QLineEdit()
         self.panNo.setReadOnly(True)
 
+        self.inputs = [self.designation, self.joinDate, self.panNo]
+
         self.remove = QtGui.QPushButton("Remove Employee")
         self.remove.clicked.connect(self.removeEmployee)
         self.remove.setObjectName("CancelButton")
@@ -53,6 +55,11 @@ class DelEmployeeWidget(QtGui.QWidget):
 
     # def loadNameList(self):
     #     self.name = SearchBox(self, Database.getdb().getEmployeeNameList())
+
+    def clearInfo(self):
+        self.id.setCurrentIndex(-1)
+        for i in range(len(self.inputs)):
+            self.inputs[i].clear()
 
 
     def setIdList(self, name):
@@ -79,9 +86,7 @@ class DelEmployeeWidget(QtGui.QWidget):
 
         emp = Database.getdb().getEmployeeInfo(id)
         if emp is None:
-            self.designation.clear()
-            self.joinDate.clear()
-            self.panNo.clear()
+            self.clearInfo()
         else:
             self.designation.setText(emp.designation)
             self.joinDate.setText(emp.getStrDate())
@@ -164,6 +169,7 @@ class DelEmployeeWidget(QtGui.QWidget):
                     nameList = Database.getdb().getEmployeeNameList()
                     self.name.addItems(nameList)
                     self.name.setCurrentIndex(-1)
+                    self.clearInfo()
 
                 except Exception as e:
                     raise e

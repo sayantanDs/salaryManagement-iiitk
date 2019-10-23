@@ -11,6 +11,7 @@ from DelEmployee import DelEmployeeWidget
 from EditEmployee import EditEmployeeWidget
 from ShowEmployee import ShowEmployeeWidget
 from AddDesignation import AddDesignationWidget
+from DeleteDesignation import DelDesignationWidget
 from ShowDesignation import ShowDesigationWidget
 from EditDesignation import EditDesignationWidget
 from CalculateSalary import CalculateSalaryWidget
@@ -92,6 +93,7 @@ class MainWindow(QtGui.QMainWindow):
             "Edit Employee": EditEmployeeWidget,
             "Show Employee": ShowEmployeeWidget,
             "Add Designation": AddDesignationWidget,
+            "Del Designation": DelDesignationWidget,
             "Edit Designation": EditDesignationWidget,
             "Show Designation": ShowDesigationWidget,
             "Calc Salary": CalculateSalaryWidget,
