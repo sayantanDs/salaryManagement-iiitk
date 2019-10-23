@@ -3,12 +3,13 @@ import mysql.connector
 from ShowMySqlError import ShowMysqlError
 from DatabaseManager import Database
 
+
 class ChangePasswordWidget(QtGui.QDialog):
     
     def __init__(self, parent=None):
         super(ChangePasswordWidget, self).__init__(parent)
 
-        self._parent = parent
+        self.__parent = parent
         
         self.title = "Change Password"
 
@@ -28,6 +29,10 @@ class ChangePasswordWidget(QtGui.QDialog):
         self.bttnLogin.clicked.connect(self.changePassword)
         self.newpassword.returnPressed.connect(self.changePassword)
 
+        self.bttnCancel = QtGui.QPushButton("Cancel")
+        self.bttnCancel.setObjectName("CancelButton")
+        self.bttnCancel.clicked.connect(self.goBack)
+
         self.setupUI()
 
     def handleShowPassword(self):
@@ -40,8 +45,6 @@ class ChangePasswordWidget(QtGui.QDialog):
 
     def changePassword(self):
         try:
-        	
-            # if DatabaseManager.db.checkLogin(self.username.text(), self.password.text()):
             if Database.getdb().checkLogin(self._parent.username, self.currentpassword.text()):
                 Database.getdb().changeLogin(self._parent.username, self.newpassword.text())
                 if self._parent is not None:
@@ -52,6 +55,10 @@ class ChangePasswordWidget(QtGui.QDialog):
                 QtGui.QMessageBox.warning(self, 'Error', 'Bad user or password! Password not changed!')
         except mysql.connector.Error as e:
             ShowMysqlError(e,self)
+
+    def goBack(self):
+        if self.__parent is not None:
+            self.__parent.goBack()
 
     def setupUI(self):
 
@@ -86,6 +93,12 @@ class ChangePasswordWidget(QtGui.QDialog):
         hlayout.addStretch()
         layout.addLayout(hlayout)
         layout.addStretch(2)
+
+        bttnLayout = QtGui.QHBoxLayout()
+        bttnLayout.addStretch()
+        bttnLayout.addWidget(self.bttnCancel)
+        layout.addLayout(bttnLayout)
+
         self.setLayout(layout)
 
 
