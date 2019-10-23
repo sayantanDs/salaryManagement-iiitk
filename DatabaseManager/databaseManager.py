@@ -219,6 +219,21 @@ class DatabaseManager:
         self.mycursor.execute("INSERT INTO " + self.loginTablename + " VALUES(%s, %s)", (username, hashpass))
         self.mydb.commit()
 
+    def changeLogin(self, username, newpassword):
+        """To change password of existing admin
+
+        Args:
+            username (str): admin username
+            password (str): new admin password
+
+        Returns:
+            None
+        """
+
+        hashpass = hashlib.sha256(newpassword).digest()
+        self.mycursor.execute("UPDATE " + self.loginTablename + " SET password = %s WHERE username = %s", (hashpass, username))
+        self.mydb.commit()
+
     def addEmployee(self, emp):
         """Add a new employee record to database
 

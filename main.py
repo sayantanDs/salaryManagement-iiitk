@@ -17,6 +17,7 @@ from CalculateSalary import CalculateSalaryWidget
 from ShowPaySlip import ShowPaySlipWidget
 from Login import LoginWidget
 from Header import Header
+from ChangePassword import ChangePasswordWidget
 
 from ShowMySqlError import ShowMysqlError
 
@@ -66,6 +67,8 @@ class MainWindow(QtGui.QMainWindow):
     def __init__(self):
         QtGui.QMainWindow.__init__(self)
 
+        self.username = None
+
         self.setWindowTitle("Salary Manager")
         self.setGeometry(50,50, 900, 700)
         self.setWindowState(QtCore.Qt.WindowMaximized)
@@ -92,7 +95,8 @@ class MainWindow(QtGui.QMainWindow):
             "Edit Designation": EditDesignationWidget,
             "Show Designation": ShowDesigationWidget,
             "Calc Salary": CalculateSalaryWidget,
-            "Result": ShowPaySlipWidget
+            "Result": ShowPaySlipWidget,
+            "Change Password":ChangePasswordWidget
         }
 
         self.gotoPage("Login")

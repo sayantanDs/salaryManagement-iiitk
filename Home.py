@@ -24,7 +24,7 @@ class HomeWidget(QtGui.QWidget):
         self.bttnDelDesg = NavButton("Delete Designation", "Resources/delete_designation.png", None, self)
         self.bttnShowDesg = NavButton("Show Designations", "Resources/show_designation.png", "Show Designation", self)
         self.bttnCalcSalary = NavButton("Generate Payslip", "Resources/rupee.png", "Calc Salary", self)
-        self.bttnSettings = NavButton("Settings", "Resources/icons8-settings-96.png", None, self)
+        self.bttnSettings = NavButton("Change Password", "Resources/icons8-settings-96.png", "Change Password", self)
         self.setupUI()
 
     def gotoPage(self, name):

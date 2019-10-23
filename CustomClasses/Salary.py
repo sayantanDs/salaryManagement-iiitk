@@ -71,10 +71,13 @@ class Salary:
         self.da = (self.presentPay * self.da_percent) / 100
         self.hra = (self.presentPay * self.hra_percent) / 100
         self.ta = (self.presentPay * self.ta_percent) / 100
-        self.it = (self.presentPay * self.it_percent) / 100
-        self.pt = (self.presentPay * self.pt_percent) / 100
+
 
         self.grossEarnings = self.presentPay + self.da + self.hra + self.ta
+
+        self.it = (self.grossEarnings * self.it_percent) / 100
+        self.pt = (self.grossEarnings * self.pt_percent) / 100
+
         self.grossDeductions = self.it + self.pt
         self.netPay = self.grossEarnings - self.grossDeductions
 

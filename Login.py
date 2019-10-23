@@ -54,8 +54,10 @@ class LoginWidget(QtGui.QDialog):
     def doLogin(self):
         try:
             # if DatabaseManager.db.checkLogin(self.username.text(), self.password.text()):
+
             if Database.getdb().checkLogin(self.username.text(), self.password.text()):
                 if self._parent is not None:
+                    self._parent.username = self.username.text()
                     self._parent.gotoPage("Home")
             else:
                 QtGui.QMessageBox.warning(self, 'Error', 'Bad user or password')
