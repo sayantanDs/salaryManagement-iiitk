@@ -144,7 +144,8 @@ class DatabaseManager:
             user=username,
             passwd=password,
             database=databaseName,
-            connection_timeout=5
+            connection_timeout=5,
+            raw=True
         )
 
         self.designationTableName = "designations"
