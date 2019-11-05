@@ -78,15 +78,23 @@ class Salary:
         self.da = (self.presentPay * self.da_percent) / 100
         self.hra = (self.presentPay * self.hra_percent) / 100
         self.ta = (self.presentPay * self.ta_percent) / 100
-
-
         self.grossEarnings = self.presentPay + self.da + self.hra + self.ta
-
         self.it = (self.grossEarnings * self.it_percent) / 100
         self.pt = (self.grossEarnings * self.pt_percent) / 100
-
         self.grossDeductions = self.it + self.pt
         self.netPay = self.grossEarnings - self.grossDeductions
+
+        # rounding off
+        self.presentPay = round(self.presentPay,3)
+        self.originalPay = round(self.originalPay,3)
+        self.da = round(self.da,3)
+        self.hra = round(self.hra,3)
+        self.ta = round(self.ta,3)
+        self.grossEarnings = round(self.grossEarnings,3)
+        self.it = round(self.it,3)
+        self.pt = round(self.pt,3)
+        self.grossDeductions = round(self.grossDeductions,3)
+        self.netPay = round(self.netPay,3)
 
     def result(self):
         """Method to get salary info in format required by GUI
@@ -95,9 +103,10 @@ class Salary:
             The Salary info in a tuple arranged in the order required by the GUI
         """
 
-        return (self.id, self.name, self.designation, self.originalPay, self.originalPayGrade, self.doj, self.pan,
-                self.da, self.hra, self.ta, self.it, self.pt, self.presentPay, self.grossEarnings, self.grossDeductions,
-                self.netPay, self.month, self.year)
+        return (self.id, self.name, self.designation, '%.03f'%(self.originalPay), self.originalPayGrade, self.doj, self.pan,
+                '%.03f'%(self.da), '%.03f'%(self.hra), '%.03f'%(self.ta), '%.03f'%(self.it), '%.03f'%(self.pt), '%.03f'%(self.presentPay),
+                '%.03f'%(self.grossEarnings), '%.03f'%(self.grossDeductions),
+                '%.03f'%(self.netPay), self.month, self.year)
 
     def toTuple(self):
         """Method to get salary info in format required by DatabaseManager
