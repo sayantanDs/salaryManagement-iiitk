@@ -25,6 +25,7 @@ class HomeWidget(QtGui.QWidget):
         self.bttnShowDesg = NavButton("Show Designations", "Resources/show_designation.png", "Show Designation", self)
         self.bttnCalcSalary = NavButton("Generate Payslip", "Resources/rupee.png", "Calc Salary", self)
         self.bttnSettings = NavButton("Change Password", "Resources/icons8-settings-96.png", "Change Password", self)
+        self.bttnLogout = NavButton("Log Out", "Resources/icons8-logout-rounded-left-50.png", "Log Out", self)
         self.setupUI()
 
     def gotoPage(self, name):
@@ -58,7 +59,7 @@ class HomeWidget(QtGui.QWidget):
 
         bttnList = [self.bttnAddDesignation, self.bttnDelDesg, self.bttnEditDesg, self.bttnShowDesg,
                     self.bttnShowEmp, self.bttnEditEmp, self.bttnAddEmployee, self.bttnDelEmp,
-                    self.bttnSettings, self.bttnCalcSalary]
+                    self.bttnSettings, self.bttnCalcSalary, self.bttnLogout]
         for bttn in bttnList:
             bttn.setObjectName("HomeBttn")
             bttn.setIconSize(QtCore.QSize(55,55))
@@ -87,6 +88,7 @@ class HomeWidget(QtGui.QWidget):
         otherBttnsLayout = QtGui.QVBoxLayout()
         otherBttnsLayout.addWidget(self.bttnCalcSalary)
         otherBttnsLayout.addWidget(self.bttnSettings)
+        otherBttnsLayout.addWidget(self.bttnLogout)
         otherBttnsLayout.addStretch()
         otherBttns.setLayout(otherBttnsLayout)
         groups.addWidget(otherBttns)

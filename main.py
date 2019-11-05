@@ -98,7 +98,8 @@ class MainWindow(QtGui.QMainWindow):
             "Show Designation": ShowDesigationWidget,
             "Calc Salary": CalculateSalaryWidget,
             "Result": ShowPaySlipWidget,
-            "Change Password":ChangePasswordWidget
+            "Change Password":ChangePasswordWidget,
+            "Log Out": LoginWidget
         }
 
         self.gotoPage("Login")
