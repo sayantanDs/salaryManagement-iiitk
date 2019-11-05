@@ -31,15 +31,17 @@ class Employee:
 
         """
 
-        self.id = id
-        self.name = name
-        self.designation = designation
+        self.id = str(id)
+        self.name = str(name)
+        self.designation = str(designation)
         self.originalPay = float(originalPay)
         self.originalPayGrade = float(originalPayGrade)
         self.doj = doj
+        if isinstance(doj, bytearray):
+            self.doj = datetime.strptime(str(self.doj), '%Y-%m-%d')
         if isinstance(doj, QtCore.QDate):
             self.doj = datetime(self.doj.year(), self.doj.month(), self.doj.day())
-        self.pan = pan
+        self.pan = str(pan)
 
     def toTuple(self):
         """Method to get employee info in format required by DatabaseManager

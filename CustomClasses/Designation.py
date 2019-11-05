@@ -22,7 +22,7 @@ class Designation:
 
         """
 
-        self.designation = designation
+        self.designation = str(designation)
         self.da = float(da)
         self.hra = float(hra)
         self.ta = float(ta)

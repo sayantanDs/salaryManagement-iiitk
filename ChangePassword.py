@@ -4,10 +4,9 @@ from ShowMySqlError import ShowMysqlError
 from DatabaseManager import Database
 
 
-class ChangePasswordWidget(QtGui.QDialog):
-    
+class ChangePasswordWidget(QtGui.QWidget):
     def __init__(self, parent=None):
-        super(ChangePasswordWidget, self).__init__(parent)
+        QtGui.QWidget.__init__(self, parent)
 
         self.__parent = parent
         
@@ -45,12 +44,12 @@ class ChangePasswordWidget(QtGui.QDialog):
 
     def changePassword(self):
         try:
-            if Database.getdb().checkLogin(self._parent.username, self.currentpassword.text()):
-                Database.getdb().changeLogin(self._parent.username, self.newpassword.text())
-                if self._parent is not None:
+            if Database.getdb().checkLogin(self.__parent.username, self.currentpassword.text()):
+                Database.getdb().changeLogin(self.__parent.username, self.newpassword.text())
+                if self.__parent is not None:
                     QtGui.QMessageBox(QtGui.QMessageBox.NoIcon, "Success", "Password changed successfully!",
                                       parent=self).exec_()
-                    self._parent.gotoPage("Home")
+                    self.__parent.gotoPage("Home")
             else:
                 QtGui.QMessageBox.warning(self, 'Error', 'Bad user or password! Password not changed!')
         except mysql.connector.Error as e:

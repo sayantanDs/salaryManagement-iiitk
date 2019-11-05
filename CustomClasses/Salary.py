@@ -49,6 +49,7 @@ class Salary:
         # process first type of argument list
         if len(args) == 4:
             emp, desig, self.month, self.year = args
+            self.month = str(self.month)
             self.year = int(self.year)
             self.originalPay = emp.originalPay
             self.originalPayGrade = emp.originalPayGrade
@@ -57,8 +58,14 @@ class Salary:
 
         # process second type of argument list
         else:
-            emp, self.date, self.designation, self.originalPay, self.originalPayGrade, \
-            self.da_percent, self.hra_percent, self.ta_percent, self.it_percent, self.pt_percent = args
+            emp = args[0]
+            self.date = args[1]
+            if isinstance(self.date, bytearray):
+                self.date = datetime.strptime(str(self.date), '%Y-%m-%d')
+            self.designation = str(args[2])
+            self.originalPay, self.originalPayGrade, \
+            self.da_percent, self.hra_percent, self.ta_percent, self.it_percent, self.pt_percent = [float(x) for x in args[3:]]
+
             self.month, self.year = self.dateToMonthYear(self.date)
 
         self.id = emp.id
