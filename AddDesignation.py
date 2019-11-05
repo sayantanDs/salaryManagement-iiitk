@@ -97,11 +97,11 @@ class AddDesignationWidget(QWidget):
         form.setSpacing(20)
 
         form.addRow(QLabel("Deignation"), self.designation)
-        form.addRow(QLabel("Dearness Allowance"), self.da)
-        form.addRow(QLabel("House Rent Allowance"), self.hra)
-        form.addRow(QLabel("Transport Allowance"), self.ta)
-        form.addRow(QLabel("Income Tax"), self.it)
-        form.addRow(QLabel("Professional Tax"), self.pt)
+        form.addRow(QLabel("Dearness Allowance (%)"), self.da)
+        form.addRow(QLabel("House Rent Allowance (%)"), self.hra)
+        form.addRow(QLabel("Transport Allowance (%)"), self.ta)
+        form.addRow(QLabel("Income Tax (%)"), self.it)
+        form.addRow(QLabel("Professional Tax (%)"), self.pt)
 
         layout.addLayout(form)
         layout.addStretch()

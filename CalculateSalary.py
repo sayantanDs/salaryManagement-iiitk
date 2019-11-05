@@ -218,16 +218,16 @@ class CalculateSalaryWidget(QWidget):
         layout.addWidget(infoGroup)
 
         leftForm = QFormLayout()
-        leftForm.addRow(QLabel("Dearness Allowance"), self.da_percent)
-        leftForm.addRow(QLabel("Housing Rent Allowance"),self.hra_percent)
-        leftForm.addRow(QLabel("Transport Allowance"), self.ta_percent)
+        leftForm.addRow(QLabel("Dearness Allowance (%)"), self.da_percent)
+        leftForm.addRow(QLabel("Housing Rent Allowance (%)"),self.hra_percent)
+        leftForm.addRow(QLabel("Transport Allowance (%)"), self.ta_percent)
 
         leftGroup = QGroupBox("Allowances")
         leftGroup.setLayout(leftForm)
 
         rightForm = QFormLayout()
-        rightForm.addRow(QLabel("Income Tax"), self.it_percent)
-        rightForm.addRow(QLabel("Profession Tax"), self.pt_percent)
+        rightForm.addRow(QLabel("Income Tax (%)"), self.it_percent)
+        rightForm.addRow(QLabel("Profession Tax (%)"), self.pt_percent)
 
         rightGroup = QGroupBox("Deductions")
         rightGroup.setLayout(rightForm)
