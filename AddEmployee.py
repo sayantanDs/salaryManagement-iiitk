@@ -33,14 +33,14 @@ class AddEmployeeWidget(QtGui.QWidget):
         self.designation = QtGui.QComboBox(self)
         self.designation.addItems(Database.getdb().getDesignations())
         self.originalPay = ValidatingLineEdit("Original Pay", QtGui.QDoubleValidator(), self)
-        self.originalPayGrade = ValidatingLineEdit("Original Pay Grade", QtGui.QDoubleValidator(), self)
+        self.gradePay = ValidatingLineEdit("Grade Pay", QtGui.QDoubleValidator(), self)
         self.DOJ = DatePicker(self)
         self.pan = ValidatingLineEdit("PAN", "[A-Z]{5}\d{4}[A-Z]", self)
         self.pan.textEdited.connect(lambda s: self.pan.setText(str(s).upper()))
 
         # inputs whos validity needs to checked are put in a list
         # so that we can loop through them to check validity
-        self.inputs = [self.id, self.name, self.originalPay, self.originalPayGrade, self.pan]
+        self.inputs = [self.id, self.name, self.originalPay, self.gradePay, self.pan]
 
         self.bttnAddEmployee = QtGui.QPushButton("Add Employee")
         self.bttnCancel = QtGui.QPushButton("Cancel")
@@ -73,7 +73,7 @@ class AddEmployeeWidget(QtGui.QWidget):
                            self.name.text(),
                            self.designation.currentText(),
                            self.originalPay.text(),
-                           self.originalPayGrade.text(),
+                           self.gradePay.text(),
                            self.DOJ.getDate(),
                            self.pan.text())
             try:
@@ -101,7 +101,7 @@ class AddEmployeeWidget(QtGui.QWidget):
         form.addRow(QtGui.QLabel("Name"), self.name)
         form.addRow(QtGui.QLabel("Designation"), self.designation)
         form.addRow(QtGui.QLabel("Original Pay"), self.originalPay)
-        form.addRow(QtGui.QLabel("Original Pay Grade"), self.originalPayGrade)
+        form.addRow(QtGui.QLabel("Original Pay Grade"), self.gradePay)
         form.addRow(QtGui.QLabel("Date of joining"), self.DOJ)
         form.addRow(QtGui.QLabel("Pan No."), self.pan)
         layout.addLayout(form)

@@ -5,7 +5,7 @@ def printPaySlip(id,
                 name,
                 designation,
                 originalPay,
-                originalPayGrade,
+                gradePay,
                 DOJ,
                 pan,
                 da, hra, ta, incomeTax, professionTax,
@@ -51,8 +51,8 @@ def printPaySlip(id,
                 <tr> <td>ID No.</td> <td> : </td> <td> {} </td> </tr>
                 <tr> <td>Name</td> <td> : </td> <td> {} </td> </tr>
                 <tr> <td>Designation</td> <td> : </td> <td> {} </td> </tr>
-                <tr> <td>Original Pay</td> <td> : </td> <td> {} </td> </tr>
-                <tr> <td>Original Grade Pay</td> <td> : </td> <td> {} </td> </tr>
+                <tr> <td>Pay</td> <td> : </td> <td> {} </td> </tr>
+                <tr> <td>Pay Grade</td> <td> : </td> <td> {} </td> </tr>
                 <tr> <td>Date of joining</td> <td> : </td> <td> {} </td> </tr>
                 <tr> <td>Pan No.</td> <td> : </td> <td> {} </td> </tr>                
             </table>
@@ -95,7 +95,7 @@ def printPaySlip(id,
         '''
 
     htmlText = htmlText.format("Resources/iiitk.png", month.upper(), year,
-                               id, name, designation, originalPay, originalPayGrade, DOJ, pan,
+                               id, name, designation, originalPay, gradePay, DOJ, pan,
                                presentPay, incomeTax,
                                da, professionTax,
                                hra,

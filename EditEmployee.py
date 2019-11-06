@@ -57,10 +57,10 @@ class EditEmployeeWidget(QWidget):
         self.nameEdit = ValidatingLineEdit("Name", "[a-zA-Z\s]+", self)
         self.designation = QComboBox(self)
         self.originalPay = ValidatingLineEdit("Original Pay", QDoubleValidator(), self)
-        self.originalPayGrade = ValidatingLineEdit("Original Pay Grade", QDoubleValidator(), self)
+        self.gradePay = ValidatingLineEdit("Grade Pay", QDoubleValidator(), self)
         self.DOJ = DatePicker(self)
         self.pan = ValidatingLineEdit("PAN", "[A-Z]{5}\d{4}[A-Z]", self)
-        self.inputs = [self.nameEdit, self.originalPay, self.originalPayGrade, self.pan]
+        self.inputs = [self.nameEdit, self.originalPay, self.gradePay, self.pan]
 
         self.bttnSave = QPushButton("Save Changes")
         self.bttnCancel = QPushButton("Back")
@@ -93,7 +93,7 @@ class EditEmployeeWidget(QWidget):
                            self.nameEdit.text(),
                            self.designation.currentText(),
                            self.originalPay.text(),
-                           self.originalPayGrade.text(),
+                           self.gradePay.text(),
                            self.DOJ.getDate(),
                            self.pan.text())
             try:
@@ -107,13 +107,13 @@ class EditEmployeeWidget(QWidget):
     def setInputReadOnly(self, TrueOrFalse):
         self.nameEdit.setReadOnly(TrueOrFalse)
         self.originalPay.setReadOnly(TrueOrFalse)
-        self.originalPayGrade.setReadOnly(TrueOrFalse)
+        self.gradePay.setReadOnly(TrueOrFalse)
         self.DOJ.setReadOnly(TrueOrFalse)
         self.pan.setReadOnly(TrueOrFalse)
         # reload stylesheet to refelect changes of readonly
         self.nameEdit.setStyle(self.style())
         self.originalPay.setStyle(self.style())
-        self.originalPayGrade.setStyle(self.style())
+        self.gradePay.setStyle(self.style())
         self.DOJ.setStyle(self.style())
         self.pan.setStyle(self.style())
 
@@ -122,7 +122,7 @@ class EditEmployeeWidget(QWidget):
         self.nameEdit.clear()
         self.designation.setCurrentIndex(-1)
         self.originalPay.clear()
-        self.originalPayGrade.clear()
+        self.gradePay.clear()
         self.DOJ.clear()
         self.pan.clear()
 
@@ -139,7 +139,7 @@ class EditEmployeeWidget(QWidget):
             self.nameEdit.setText(emp.name)
             self.designation.setCurrentIndex(self.designation.findText(emp.designation))
             self.originalPay.setText(str(emp.originalPay))
-            self.originalPayGrade.setText(str(emp.originalPayGrade))
+            self.gradePay.setText(str(emp.gradePay))
             self.DOJ.setDate(emp.getQDate())
             self.pan.setText(emp.pan)
 
@@ -182,7 +182,7 @@ class EditEmployeeWidget(QWidget):
         form.addRow(QLabel("Name"), self.nameEdit)
         form.addRow(QLabel("Designation"), self.designation)
         form.addRow(QLabel("Original Pay"), self.originalPay)
-        form.addRow(QLabel("Original Pay Grade"), self.originalPayGrade)
+        form.addRow(QLabel("Original Pay Grade"), self.gradePay)
         form.addRow(QLabel("Date of joining"), self.DOJ)
         form.addRow(QLabel("Pan No."), self.pan)
         editGroup.setLayout(form)

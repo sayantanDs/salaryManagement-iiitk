@@ -41,7 +41,7 @@ class ShowEmployeeWidget(QtGui.QWidget):
                 self.table.setItem(i, j, QtGui.QTableWidgetItem(str(info[i][j])))
 
         self.table.setHorizontalHeaderLabels(
-            ["ID", "Name", "Designation", "Original Pay", "Original Pay Grade", "DOJ", "PAN"])
+            ["ID", "Name", "Designation", "Pay", "Grade Pay", "DOJ", "PAN"])
         self.table.resizeColumnsToContents()
         self.table.setSortingEnabled(True)
         self.table.sortByColumn(0, Qt.AscendingOrder)

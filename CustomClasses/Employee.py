@@ -14,14 +14,14 @@ class Employee:
 
     """
 
-    def __init__(self, id, name, designation, originalPay, originalPayGrade, doj, pan):
+    def __init__(self, id, name, designation, originalPay, gradePay, doj, pan):
         """
         Args:
             id (str): ID of the employee
             name (str): Name of the employee
             designation (str): The designation of the employee
             originalPay: original pay
-            originalPayGrade: original grade pay
+            gradePay: original grade pay
             doj: Date of joining of the employee
             pan: PAN number of the employee
 
@@ -35,7 +35,7 @@ class Employee:
         self.name = str(name)
         self.designation = str(designation)
         self.originalPay = float(originalPay)
-        self.originalPayGrade = float(originalPayGrade)
+        self.gradePay = float(gradePay)
         self.doj = doj
         if isinstance(doj, bytearray):
             self.doj = datetime.strptime(str(self.doj), '%Y-%m-%d')
@@ -52,7 +52,7 @@ class Employee:
             The employee info in a tuple arranged in the order required by the DatabaseManager
 
         """
-        return (self.id, self.name, self.designation, self.originalPay, self.originalPayGrade, self.doj, self.pan)
+        return (self.id, self.name, self.designation, self.originalPay, self.gradePay, self.doj, self.pan)
 
     def __iter__(self):
         t = self.toTuple()

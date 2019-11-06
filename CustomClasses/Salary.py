@@ -34,7 +34,7 @@ class Salary:
                 - date: date containing month and year of salary calculation
                 - designation: name of designation
                 - originalPay: original pay
-                - originalPayGrade: original grade pay
+                - gradePay: original grade pay
                 - da: Dearness Allowance percent
                 - hra: House Rent Allowance percent
                 - ta: Transport Allowance percent
@@ -52,7 +52,7 @@ class Salary:
             self.month = str(self.month)
             self.year = int(self.year)
             self.originalPay = emp.originalPay
-            self.originalPayGrade = emp.originalPayGrade
+            self.gradePay = emp.gradePay
             self.designation, self.da_percent, self.hra_percent, self.ta_percent, self.it_percent, self.pt_percent = desig.toTuple()
             self.date = self.monthYearToDate(self.month, self.year)
 
@@ -63,7 +63,7 @@ class Salary:
             if isinstance(self.date, bytearray):
                 self.date = datetime.strptime(str(self.date), '%Y-%m-%d')
             self.designation = str(args[2])
-            self.originalPay, self.originalPayGrade, \
+            self.originalPay, self.gradePay, \
             self.da_percent, self.hra_percent, self.ta_percent, self.it_percent, self.pt_percent = [float(x) for x in args[3:]]
 
             self.month, self.year = self.dateToMonthYear(self.date)
@@ -74,7 +74,7 @@ class Salary:
         self.pan = emp.pan
 
         # Calculate salary from available data
-        self.presentPay = self.originalPay + self.originalPayGrade
+        self.presentPay = self.originalPay + self.gradePay
         self.da = (self.presentPay * self.da_percent) / 100
         self.hra = (self.presentPay * self.hra_percent) / 100
         self.ta = (self.presentPay * self.ta_percent) / 100
@@ -103,7 +103,7 @@ class Salary:
             The Salary info in a tuple arranged in the order required by the GUI
         """
 
-        return (self.id, self.name, self.designation, '%.03f'%(self.originalPay), self.originalPayGrade, self.doj, self.pan,
+        return (self.id, self.name, self.designation, '%.03f'%(self.originalPay), self.gradePay, self.doj, self.pan,
                 '%.03f'%(self.da), '%.03f'%(self.hra), '%.03f'%(self.ta), '%.03f'%(self.it), '%.03f'%(self.pt), '%.03f'%(self.presentPay),
                 '%.03f'%(self.grossEarnings), '%.03f'%(self.grossDeductions),
                 '%.03f'%(self.netPay), self.month, self.year)
@@ -118,7 +118,7 @@ class Salary:
 
         """
         date_id = "%s,%02d/%04d" % (self.id, self.date.month, self.date.year)
-        return (date_id, self.id, self.date, self.designation, self.originalPay, self.originalPayGrade,
+        return (date_id, self.id, self.date, self.designation, self.originalPay, self.gradePay,
                 self.da_percent, self.hra_percent, self.ta_percent, self.it_percent, self.pt_percent)
 
     def __iter__(self):
